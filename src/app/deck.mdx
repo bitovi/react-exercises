@@ -1,0 +1,41 @@
+import { theme as customTheme } from '../../mdx-deck.js'
+export const theme = customTheme
+
+import { CodeSurfer } from 'code-surfer'
+
+# Hello!
+
+---
+
+<CodeSurfer>
+
+```js 1 title="Title" subtitle="Look at the first line"
+console.log(1);
+console.log(2);
+console.log(3);
+```
+
+```js 2 title="Title" subtitle="and now the second"
+console.log(1);
+console.log(2);
+console.log(3);
+```
+
+```js 3:5 title="Title" subtitle="and now the third, with friends"
+console.log(1);
+console.log(2);
+console.log(3);
+console.log(4);
+console.log(5);
+```
+
+</CodeSurfer>
+
+---
+
+```jsx
+import React from 'react'
+
+export default props =>
+  <h1>Highlighting</h1>
+```
