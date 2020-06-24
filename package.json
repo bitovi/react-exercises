@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test"
+    "start": "react-scripts -r ./exercises.js start",
+    "build": "react-scripts -r ./exercises.js build",
+    "test": "react-scripts -r ./exercises.js test"
   },
   "browserslist": {
     "production": [
@@ -27,6 +27,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "readline-sync": "^1.4.10"
   }
 }
