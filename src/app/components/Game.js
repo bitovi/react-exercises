@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Board from '../Board/Board'
+import Board from './Board'
 import {getHintForBoard, boardHasWinner, blankBoard, themes} from '../utils'
 
 export const ThemeContext = React.createContext(themes.light);

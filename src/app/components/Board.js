@@ -1,5 +1,5 @@
 import React from 'react'
-import Square from '../Square/Square'
+import Square from './Square'
 
 function Board({onSquareClick, board, hintSquare}) {
     return (

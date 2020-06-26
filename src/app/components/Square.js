@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import {ThemeContext} from '../Game/Game'
+import {ThemeContext} from './Game'
 
 function Square({onClick, symbol, displayAsHint}) {
     const theme = useContext(ThemeContext);

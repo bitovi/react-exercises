@@ -31,4 +31,28 @@ body {
     cursor: pointer;
     background:  #bbdefb !important;
   }
+
+  .search-container {
+    display: flex;
+    width: 100%;
+    border: 1px solid black;
+    margin-top: 25px;
+    height: 40px;
+    font-size: 2em;
+    padding: 10px;
+  }
   
+  .search {
+    border: 0;
+    outline: none;
+    width: 100%;
+    padding-right: 10px;
+    font-size: 1em;
+
+  }
+
+  .clear {
+    margin-right: 10px;
+    font-size: 1em;
+    cursor: pointer;
+  }
