@@ -1,0 +1,175 @@
+import { theme as customTheme } from '../../mdx-deck.js'
+export const theme = customTheme
+
+import { CodeSurfer } from 'code-surfer'
+
+# Props!
+They're basically arguments
+
+---
+
+<CodeSurfer>
+
+```jsx title="Let's look at a basic ErrorMessage component" subtitle=""
+import React from 'react'
+
+function ErrorMessage(){
+  return (
+    <div class="error">There is an error</div>
+  )
+}
+```
+
+```jsx title="We might want to re-use throughout our app" subtitle="The problem is it has a static, hard-coded message"
+import React from 'react'
+
+function ErrorMessage(){
+  return (
+    <div class="error">There is an error</div>
+  )
+}
+
+function App(){
+  return (
+    <ErrorMessage />
+    ...
+    <ErrorMessage />
+  )
+}
+```
+
+```jsx title="We can use prors to give it a custom message" subtitle="This is a lot like passing an argument into a function"
+import React from 'react'
+
+function ErrorMessage(props){
+  return (
+    <div class="error">{props.text}</div>
+  )
+}
+
+function App(){
+  return (
+    <ErrorMessage text="The username or password is invalid"/>
+    ...
+    <ErrorMessage text="Error connecting to internet"/>
+  )
+}
+```
+
+```jsx 3,5 title="A lot of developers will 'destructure' the props object" subtitle=""
+import React from 'react'
+
+function ErrorMessage({text}){
+  return (
+    <div class="error">{text}</div>
+  )
+}
+
+function App(){
+  return (
+    <ErrorMessage text="The username or password is invalid"/>
+    ...
+    <ErrorMessage text="Error connecting to internet"/>
+  )
+}
+```
+
+```jsx title="Now let's look at a button component" subtitle=""
+function MyButton(){
+  return (
+    <button>click me</button>
+  )
+}
+```
+
+```jsx title="We'll render it in our app" subtitle=""
+function MyButton(){
+  return (
+    <button>click me</button>
+  )
+}
+
+function App(){
+  return (
+    <MyButton />
+  )
+}
+```
+
+```jsx title="And pass it a custom 'btnText' prop" subtitle=""
+function MyButton({btnText}){
+  return (
+    <button>{btnText}</button>
+  )
+}
+
+function App(){
+  return (
+    <MyButton 
+      btnText="Submit"
+    />
+  )
+}
+```
+
+```jsx title="We can also pass functions" subtitle="These are essentially callbacks for when events happen"
+function MyButton({btnText, onBtnClick}){
+  return (
+    <button onClick={onBtnClick}>{btnText}</button>
+  )
+}
+
+function App(){
+  return (
+    <MyButton 
+      btnText="Submit"
+      onBtnClick={() => {
+        console.log("The button was pressed")
+      }}
+    />
+  )
+}
+```
+
+```jsx title="Our app has a list of friends" subtitle=""
+function App(){
+  const friends = ["Jerry", "Kate", "Ron"]
+  return (
+    <div>
+
+    </div>
+  )
+}
+```
+
+```jsx title="You can map array elements to JSX elements using Array.map" subtitle=""
+function App(){
+  const friends = ["Jerry", "Kate", "Ron"]
+  return (
+    <div>
+      friends.map(friend => (
+        <li>{friend}</li>
+      )
+    </div>
+  )
+}
+```
+
+```jsx title="When using Array.map you need to pass a unique 'key' prop" subtitle=""
+function App(){
+  const friends = ["Jerry", "Kate", "Ron"]
+  return (
+    <div>
+      friends.map(friend => (
+        <li key={friend}>{friend}</li>
+      )
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
+
+---
+
+

@@ -1,0 +1,138 @@
+import { theme as customTheme } from '../../mdx-deck.js'
+export const theme = customTheme
+
+import { CodeSurfer } from 'code-surfer'
+
+# Hello!
+
+---
+
+<CodeSurfer>
+
+```jsx title="React has two types of components" subtitle="Functional components"
+import React from 'react'
+
+function MyFuncComponent(){
+  return (
+    <div>
+      hello world
+    </div>
+  )
+}
+```
+
+```jsx title="React has two types of components" subtitle="Class components"
+import React from 'react'
+
+function MyFuncComponent(){
+  return (
+    <div>
+      hello world
+    </div>
+  )
+}
+
+class MyClassComponent extends React.Component {
+  render(){
+    return (
+      <div>
+        hello world
+      </div>
+    )
+  }
+}
+```
+
+```jsx title="Both types of components are rendered the same way"
+import React from 'react'
+
+function MyFuncComponent(){
+  return (
+    <div>
+      hello world
+    </div>
+  )
+}
+
+class MyClassComponent extends React.Component {
+  render(){
+    return (
+      <div>
+        hello world
+      </div>
+    )
+  }
+}
+
+function App(){
+  return (
+    <div>
+      <MyFuncComponent />
+      <MyClassComponent />
+    </div>
+  )
+}
+```
+
+```jsx title="Both types of components can use state" subtitle="State data is generally data that will change throughout the life of the component"
+import React, {useState} from 'react'
+
+function MyFuncComponent(){
+  const [name, setName] = useState("Jeff")
+
+  return (
+    <div>
+      Hello {name}
+    </div>
+  )
+}
+
+class MyClassComponent extends React.Component {
+
+  state = {
+    name: "Jeff"
+  }
+
+  render(){
+    return (
+      <div>
+        hello {this.state}
+      </div>
+    )
+  }
+}
+```
+
+```jsx title="State values can be changed in response to event in the component like clicks" subtitle="When state changes, React will automatically re-render the component, updating the relevant parts of the DOM"
+import React, {useState} from 'react'
+
+function MyFuncComponent(){
+  const [name, setName] = useState("Jeff")
+
+  return (
+    <div onClick={() => setName("Tom")}>
+      Hello {name}
+    </div>
+  )
+}
+
+class MyClassComponent extends React.Component {
+
+  state = {
+    name: "Jeff"
+  }
+
+  render(){
+    return (
+      <div onClick={() => this.setState({name: "Tom"})}>
+        hello {this.state}
+      </div>
+    )
+  }
+}
+```
+
+
+</CodeSurfer>
+
+---

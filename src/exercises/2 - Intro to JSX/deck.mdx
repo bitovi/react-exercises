@@ -1,0 +1,230 @@
+import { theme as customTheme } from '../../mdx-deck.js'
+export const theme = customTheme
+
+import { CodeSurfer } from 'code-surfer'
+
+# JSX (JavaScript + XML)
+It's basically HTML in JS
+
+---
+
+<CodeSurfer>
+
+```jsx 1 title="It looks like HTML" subtitle="Use the same elements you're used to"
+  <h1>Hello World</h1>
+```
+
+```jsx 2 title="Babel compiles it to pure JS" subtitle="Which looks something like this"
+  <h1>Hello World</h1>
+React.createElement("h1", null);
+```
+
+```jsx  title="Views can be complex"
+<div>
+  <h1>Hello World</h1>
+  <p>This is JSX</p>
+</div>
+```
+
+```jsx 5:8
+<div>
+  <h1>Hello World</h1>
+  <p>This is JSX</p>
+</div>
+React.createElement("div", null, 
+  React.createElement("h1", null, "Hello World"),
+  React.createElement("p", null, "This is JSX")
+);
+```
+
+
+```jsx title="Views can be complex"
+<div>
+  <h1>Hello World</h1>
+  <section>
+    <p>lorem ipsum...</p>
+    <p>This is JSX</p>
+    <nav>
+      <ul>
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+      </ul>
+    </nav>
+  </section>
+</div>
+```
+
+```jsx 15:28 title="But the compiled code is even more complex"
+<div>
+  <h1>Hello World</h1>
+  <section>
+    <p>lorem ipsum...</p>
+    <p>This is JSX</p>
+    <nav>
+      <ul>
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+      </ul>
+    </nav>
+  </section>
+</div>
+React.createElement("div", null,
+  React.createElement("h1", null, "Hello World"),
+  React.createElement("section", null, 
+    React.createElement("p", null, "lorem ipsum..."),
+    React.createElement("p", null, "This is JSX"), 
+    React.createElement("nav", null, 
+      React.createElement("ul", null, 
+        React.createElement("li", null, "one"),
+        React.createElement("li", null, "two"), 
+        React.createElement("li", null, "three")
+      )
+    )
+  )
+);
+```
+
+```jsx 1:3 title="Some things are different from HTML" subtitle="like inline styling"
+  <div style="color: red; background-color: blue">
+    Inline styles are different
+  </div>
+```
+
+```jsx 1:3 title="Some things are different from HTML" subtitle="like inline styling"
+  <div style={{color: "red", backgroundColor: "blue"}}>
+    Inline styles are different
+  </div>
+```
+
+
+```jsx 1:3 title="Some things are different from HTML" subtitle="and classes"
+  <div className="button primarys">
+    So are classes
+  </div>
+```
+
+```jsx 1:4 title="JavaScript values can be interpolated into the JSX" subtitle=""
+  const name = "Bitovi"
+  <div className="button primarys">
+    Welcome to {name}!
+  </div>
+```
+
+
+```jsx 1:4 title="Making HTML & JS work seamlessly together" subtitle=""
+  const name = "Mike"
+  <div className="button primarys">
+    <h1>Hi I'm {name}!</h1>
+  </div>
+```
+
+```jsx 1:8 title="Making HTML & JS work seamlessly together" subtitle=""
+  const person = {
+    name: "mike",
+    profession: "programmer"
+  }
+  <div className="button primarys">
+    <h1>Hi I'm {person.name.toUpperCase()}!</h1>
+    <p>I'm a {person.profession} living in Philadelphia</p>
+  </div>
+```
+
+```jsx 1:3 title="Anything you can do in HTML you can do in JSX" subtitle=""
+  <div className="button primarys">
+    <button>click me</button>
+  </div>
+```
+
+```jsx 1:3 title="JSX handles user event with ease" subtitle=""
+  <div className="button primarys">
+    <button onClick={() => console.log("Clicked")}>click me</button>
+  </div>
+```
+
+```jsx title="JSX can be put into components for reusability" subtitle=""
+  import React from 'react'
+
+  function MyButton(){
+    return (
+      <div className="button primarys">
+        <button onClick={() => console.log("Clicked")}>click me</button>
+      </div>
+    )
+  }
+```
+
+```jsx title="JSX can be put into components for reusability" subtitle="MyButton could now be re-used"
+  import React from 'react'
+
+  function MyButton(){
+    return (
+      <div className="button primarys">
+          <button>click me</button>
+      </div>
+    )
+  }
+
+  function App(){
+    return (
+      <MyButton />
+      <MyButton />
+      <MyButton />
+    )
+  }
+```
+
+
+```jsx title="JSX can be put into components for reusability" subtitle="You can even pass it data (props)"
+  import React from 'react'
+
+  function MyButton(props){
+    return (
+      <div className="button primarys">
+          <button>{props.text}</button>
+      </div>
+    )
+  }
+
+  function App(){
+    return (
+      <MyButton text="click me"/>
+      <MyButton text="submit"/>
+      <MyButton text="delete"/>
+    )
+  }
+```
+
+```jsx title="Often times components are packaged up into modules" subtitle="MyButton.js"
+  import React from 'react'
+
+  function MyButton(props){
+    return (
+      <div className="button primarys">
+          <button>{props.text}</button>
+      </div>
+    )
+  }
+
+  export default MyButton
+```
+
+```jsxx title="And then imported somewhere else" subtitle="App.jsx"
+  import React from 'react'
+  import MyButton from './MyButton'
+
+  function App(){
+    return (
+      <MyButton text="click me"/>
+      <MyButton text="submit"/>
+      <MyButton text="delete"/>
+    )
+  }
+
+  export default App
+```
+
+</CodeSurfer>
+
+---

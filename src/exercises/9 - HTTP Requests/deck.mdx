@@ -1,0 +1,107 @@
+import { theme as customTheme } from '../../mdx-deck.js'
+export const theme = customTheme
+
+import { CodeSurfer } from 'code-surfer'
+
+# HTTP Requests!
+
+---
+
+<CodeSurfer>
+
+```jsx title="When using React it's common to grab data from an API" subtitle="React fully supports Promises & async/await"
+async function getApiData(){
+  const res = await axios.get('https://apiurl.com/data')
+  return res.data
+}
+```
+
+
+```jsx title="HTTP requests can be easily paired with a component" subtitle="Functions for accessing API data can be defined outside the component"
+import React from 'react'
+
+async function getApiData(){
+  const res = await axios.get('https://apiurl.com/data')
+  return res.data
+}
+
+function App(){
+  return (
+    <div>
+      <button>
+        Get API data
+      </button>
+    </div>
+  )
+}
+```
+
+```jsx title="HTTP requests can be easily paired with a component" subtitle="And called in response to user events like clicks"
+import React from 'react'
+
+async function getApiData(){
+  const res = await axios.get('https://apiurl.com/data')
+  return res.data
+}
+
+function App(){
+  return (
+    <div>
+      <button onClick={async () => {
+        await getAPIData()
+      }}>
+        Get API data
+      </button>
+    </div>
+  )
+}
+```
+
+```jsx title="This is best used with state" subtitle="API results can update state"
+import React from 'react'
+
+async function getApiData(){
+  const res = await axios.get('https://apiurl.com/data')
+  return res.data
+}
+
+function App(){
+  const [data, setData] = useState()
+
+  return (
+    <div>
+      <button onClick={async () => {
+        setData( await getAPIData() )
+      }}>
+        Get API data
+      </button>
+      {data}
+    </div>
+  )
+}
+```
+
+```jsx title="Often times you want to get data when the component loads" subtitle="There's a hook for that, useEffect"
+import React, {useEffect} from 'react'
+
+async function getApiData(){
+  const res = await axios.get('https://apiurl.com/data')
+  return res.data
+}
+
+function App(){
+  const [data, setData] = useState()
+
+  useEffect(async () => {
+    setData( await getAPIData() )
+  }, []);
+
+  return (
+    <div>
+      {data}
+    </div>
+  )
+}
+```
+
+</CodeSurfer>
