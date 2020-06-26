@@ -1,10 +1,13 @@
 import React from 'react';
 import exercise from './exercise.json'
+import Game from "./Game/Game"
+import "./style.css"
 
 function App() {
   return (
     <div>
-      {exercise.name}
+      Exercise#: {exercise.name}
+      <Game />
     </div>
   );
 }

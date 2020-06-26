@@ -21,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
@@ -28,10 +29,15 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^26.0.0",
+    "@types/node": "^14.0.13",
+    "@types/react": "^16.9.39",
+    "@types/react-dom": "^16.9.8",
     "code-surfer": "^3.1.1",
     "deepmerge": "^4.2.2",
     "mdx-deck": "^4.1.1",
     "react-scripts": "3.4.1",
-    "readline-sync": "^1.4.10"
+    "readline-sync": "^1.4.10",
+    "typescript": "^3.9.5"
   }
 }
