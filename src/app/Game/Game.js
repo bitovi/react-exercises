@@ -2,8 +2,6 @@ import React, {useState} from 'react'
 import Board from '../Board/Board'
 import {getHintForBoard, boardHasWinner, blankBoard, themes} from '../utils'
 
-
-  
 export const ThemeContext = React.createContext(themes.light);
 
 function Game() {
@@ -12,7 +10,7 @@ function Game() {
     const [hintSquare, setHintSquare] = useState(-1)
     const [theme, setTheme] = useState(themes.light)
 
-    function handleSquareClick(squareIndex:number){
+    function handleSquareClick(squareIndex){
         if(!board[squareIndex]){
             const newBoard = [...board]
             newBoard[squareIndex] = getCurrentPlayer()
@@ -58,9 +56,5 @@ function Game() {
         </>
     );
 }
-
-
-
-
 
 export default Game;

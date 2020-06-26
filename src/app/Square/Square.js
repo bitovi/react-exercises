@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import {ThemeContext} from '../Game/Game'
 
-function Square({onClick, symbol, displayAsHint}: SquareProps) {
+function Square({onClick, symbol, displayAsHint}) {
     const theme = useContext(ThemeContext);
     console.log(theme)
     return (
@@ -13,12 +13,6 @@ function Square({onClick, symbol, displayAsHint}: SquareProps) {
             {symbol}
         </div>
     );
-}
-
-interface SquareProps {
-    onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
-    symbol: string,
-    displayAsHint: boolean
 }
 
 export default Square;

@@ -1,7 +1,7 @@
 import React from 'react'
 import Square from '../Square/Square'
 
-function Board({onSquareClick, board, hintSquare}: BoardProps) {
+function Board({onSquareClick, board, hintSquare}) {
     return (
         <div className="board">
             {board.map((symbol, index) =>     
@@ -14,12 +14,6 @@ function Board({onSquareClick, board, hintSquare}: BoardProps) {
             )}
         </div>
     );
-}
-
-interface BoardProps {
-    onSquareClick: (squareIndex: number) => void,
-    board: string[],
-    hintSquare: number
 }
 
 export default Board;
