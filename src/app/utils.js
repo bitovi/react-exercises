@@ -17,7 +17,7 @@ export const themes = {
     }
   };
 
-export async function getHintForBoard(board: string[], currentPlayerSymbol:string): Promise<number>{
+export async function getHintForBoard(board, currentPlayerSymbol) {
     const boardAsString = board.map(s => s ? s : "-")
     const res = await axios.get(
         `https://stujo-tic-tac-toe-stujo-v1.p.rapidapi.com/${boardAsString.join("")}/${currentPlayerSymbol}`,
@@ -28,7 +28,7 @@ export async function getHintForBoard(board: string[], currentPlayerSymbol:strin
     return res.data.recommendation
 }
 
-export function boardHasWinner(board:string[]) {
+export function boardHasWinner(board) {
     const winningCombos = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
         [0, 3, 6], [1, 4, 7], [2, 5, 8],
