@@ -1,7 +1,6 @@
 import { theme as customTheme, Half } from '../../../mdx-deck.js';
 export const theme = customTheme;
 
-import { Notes } from 'mdx-deck';
 import { CodeSurfer } from 'code-surfer';
 
 # Styling with React
@@ -193,7 +192,7 @@ function Thing({ isActive }) {
 <CodeSurfer>
 
 ```jsx title="Styled Components"
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const Button = styled.button`
   border: 1px solid darkblue;
@@ -214,7 +213,7 @@ export const Button = styled.button`
 ```
 
 ```jsx title="Styled Components"
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const Button = styled.button`
   border: 1px solid darkblue;
@@ -249,21 +248,13 @@ function Thing() {
 
 </CodeSurfer>
 
-<Notes>
-
-styled-components utilizes tagged template literals to style your components.
-
-It removes the mapping between components and styles. This means that when you're defining your styles, you're actually creating a normal React component, that has your styles attached to it.
-
-</Notes>
-
 ---
 ---
 
 <CodeSurfer>
 
 ```jsx title="More Styled Components"
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import Button from './components/Button';
 
 const List = styled.ul`
