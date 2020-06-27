@@ -1,0 +1,360 @@
+import { theme as customTheme, Half } from '../../../mdx-deck.js';
+export const theme = customTheme;
+
+import { Notes } from 'mdx-deck';
+import { CodeSurfer } from 'code-surfer';
+
+# React Context via Hooks
+
+---
+
+## useContext
+
+<Steps>
+
+* Exposes data at a high level to be used at a lower level
+* Avoids prop-drilling
+* Used by custom hooks to simplify knowledge
+
+</Steps>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="Providing and Consuming a Theme with Context" subtitle="The theme data we're exposing"
+// provider.js
+import React, { useContext } from 'react';
+
+const THEMES = {
+  blue: {
+    colors: {
+      background: '#0000ff',
+      foreground: '#ffff00',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+  red: {
+    colors: {
+      background: '#ff0000',
+      foreground: '#00ffff',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+};
+```
+
+```jsx title="Providing and Consuming a Theme with Context" subtitle="Use the Button with the Provider"
+// provider.js
+import React, { useContext } from 'react';
+
+const THEMES = {
+  blue: {
+    colors: {
+      background: '#0000ff',
+      foreground: '#ffff00',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+  red: {
+    colors: {
+      background: '#ff0000',
+      foreground: '#00ffff',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+};
+
+// consumer.js
+import React from 'react';
+import { useColor, useSize } from './provider'
+
+export default function Layout() {
+  return (
+    <ThemeProvider theme="red">
+      <div className="left">
+        <Button label="Left Button" />
+      </div>
+    </ThemeProvider>
+  );
+}
+```
+
+```jsx title="Providing and Consuming a Theme with Context" subtitle="The Button Component, using custom hooks"
+// provider.js
+import React, { useContext } from 'react';
+
+const THEMES = {
+  blue: {
+    colors: {
+      background: '#0000ff',
+      foreground: '#ffff00',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+  red: {
+    colors: {
+      background: '#ff0000',
+      foreground: '#00ffff',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+};
+
+// consumer.js
+import React from 'react';
+import { useColor, useSize } from './provider'
+
+export default function Layout() {
+  return (
+    <ThemeProvider theme="red">
+      <div className="left">
+        <Button label="Left Button" />
+      </div>
+    </ThemeProvider>
+  );
+}
+
+function Button({ label }) {
+  const background = useColor('background');
+  const color = useColor('foreground');
+  const fontSize = useSize('button');
+
+  return (
+    <button style={{ background, color, fontSize }}>
+      {label}
+    </button>
+  );
+}
+```
+
+```jsx title="Providing and Consuming a Theme with Context" subtitle="Create a context and use it in our Provider"
+// provider.js
+import React, { useContext } from 'react';
+
+const THEMES = {
+  blue: {
+    colors: {
+      background: '#0000ff',
+      foreground: '#ffff00',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+  red: {
+    colors: {
+      background: '#ff0000',
+      foreground: '#00ffff',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+};
+
+const ThemeContext = React.createContext();
+
+export default function ThemeProvider({ theme, children }) {
+  return (
+    <ThemeContext.Provider value={THEMES[theme]}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+// consumer.js
+import React from 'react';
+import { useColor, useSize } from './provider'
+
+export default function Layout() {
+  return (
+    <ThemeProvider theme="red">
+      <div className="left">
+        <Button label="Left Button" />
+      </div>
+    </ThemeProvider>
+  );
+}
+
+function Button({ label }) {
+  const background = useColor('background');
+  const color = useColor('foreground');
+  const fontSize = useSize('button');
+
+  return (
+    <button style={{ background, color, fontSize }}>
+      {label}
+    </button>
+  );
+}
+```
+
+```jsx title="Providing and Consuming a Theme with Context" subtitle="Custom hooks to provide the needed values"
+// provider.js
+import React, { useContext } from 'react';
+
+const THEMES = {
+  blue: {
+    colors: {
+      background: '#0000ff',
+      foreground: '#ffff00',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+  red: {
+    colors: {
+      background: '#ff0000',
+      foreground: '#00ffff',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+};
+
+const ThemeContext = React.createContext();
+
+export default function ThemeProvider({ theme, children }) {
+  return (
+    <ThemeContext.Provider value={THEMES[theme]}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useColor(color) {
+  const { colors } = useContext(ThemeContext);
+  return colors[color];
+};
+
+export function useSize(size) {
+  const { sizes } = useContext(ThemeContext);
+  return sizes[size];
+};
+
+// consumer.js
+import React from 'react';
+import { useColor, useSize } from './provider'
+
+export default function Layout() {
+  return (
+    <ThemeProvider theme="red">
+      <div className="left">
+        <Button label="Left Button" />
+      </div>
+    </ThemeProvider>
+  );
+}
+
+function Button({ label }) {
+  const background = useColor('background');
+  const color = useColor('foreground');
+  const fontSize = useSize('button');
+
+  return (
+    <button style={{ background, color, fontSize }}>
+      {label}
+    </button>
+  );
+}
+```
+
+```jsx title="Providing and Consuming a Theme with Context" subtitle="This is why it's better than a global module"
+// provider.js
+import React, { useContext } from 'react';
+
+const THEMES = {
+  blue: {
+    colors: {
+      background: '#0000ff',
+      foreground: '#ffff00',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+  red: {
+    colors: {
+      background: '#ff0000',
+      foreground: '#00ffff',
+    },
+    sizes: {
+      button: '1.25em',
+    },
+  },
+};
+
+const ThemeContext = React.createContext();
+
+export default function ThemeProvider({ theme, children }) {
+  return (
+    <ThemeContext.Provider value={THEMES[theme]}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useColor(color) {
+  const { colors } = useContext(ThemeContext);
+  return colors[color];
+};
+
+export function useSize(size) {
+  const { sizes } = useContext(ThemeContext);
+  return sizes[size];
+};
+
+// consumer.js
+import React from 'react';
+import { useColor, useSize } from './provider'
+
+export default function Layout() {
+  return (
+    <ThemeProvider theme="red">
+      <div className="left">
+        <Button label="Left Button" />
+      </div>
+
+      <ThemeProvider theme="blue">
+        <div className="content">
+          <Button label="Content Button" />
+        </div>
+      </ThemeProvider>
+    </ThemeProvider>
+  );
+}
+
+function Button({ label }) {
+  const background = useColor('background');
+  const color = useColor('foreground');
+  const fontSize = useSize('button');
+
+  return (
+    <button style={{ background, color, fontSize }}>
+      {label}
+    </button>
+  );
+}
+```
+
+</CodeSurfer>
+
+---
+
+# Questions?

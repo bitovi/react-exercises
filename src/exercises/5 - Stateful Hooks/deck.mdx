@@ -1,0 +1,108 @@
+import { theme as customTheme, Half } from '../../../mdx-deck.js';
+export const theme = customTheme;
+
+import { Notes } from 'mdx-deck';
+import { CodeSurfer } from 'code-surfer';
+
+# Stateful Hooks
+
+useState and useRef
+
+---
+
+## useState
+
+<Steps>
+
+* one
+* two
+* three
+
+</Steps>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="useState with Form Input"
+import React, { useState } from 'react';
+
+function Hello() {
+  const [ value, setValue ] = useState('');
+
+  return (
+    <input
+      value={value}
+      onChange={e => setValue(e.target.value)}
+    />
+  );
+};
+```
+
+```diff 4 title="useState with Form Input" subtitle="Get the value and setter"
+```
+```diff 8 title="useState with Form Input" subtitle="Use the value as needed"
+```
+```diff 9 title="useState with Form Input" subtitle="Call the setter to change the value and trigger an update"
+```
+
+```diff title="useState with Form Input"
+```
+
+</CodeSurfer>
+
+---
+
+## useRef
+
+<Steps>
+
+* A data store, just like useState
+* Does not cause rerenders, unlike useState
+* Has a single property `current`
+* Two Main Uses:
+  * Easily expose dom elements
+  * Maintain references to external libraries
+
+</Steps>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="useRef"
+import React, { useRef, useEffect } from 'react';
+
+function Hello() {
+  const parent = useRef();
+  const map = useRef();
+
+  useEffect(() => {
+    map.current = new google.maps.Map(parent.current, {});
+  }, []);
+
+  return (
+    <div ref={parent} />
+  );
+};
+```
+
+```diff 4:5 title="useRef" subtitle="Get refs for the parent and the map instance"
+```
+```diff 12 title="useRef" subtitle="Pass the parent ref to the element"
+```
+```diff 7,9 title="useRef" subtitle="Working inside a useEffect so we have access to parent.current"
+```
+```diff 8 title="useRef" subtitle="Set the current map value"
+```
+
+```diff title="useRef"
+```
+
+</CodeSurfer>
+
+---
+
+# Questions?

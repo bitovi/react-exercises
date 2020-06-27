@@ -1,0 +1,279 @@
+import { theme as customTheme, Half } from '../../../mdx-deck.js';
+export const theme = customTheme;
+
+import { Notes } from 'mdx-deck';
+import { CodeSurfer } from 'code-surfer';
+
+# Optimization Hooks
+
+Optimization through Memoization
+
+---
+
+## useMemo
+
+<Steps>
+
+* one
+* two
+* three
+
+</Steps>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="useMemo Example"
+import React, { useMemo } from 'react';
+
+function Hello({ firstName, lastName }) {
+  const name = useMemo(() => {
+    // some expensive derived value
+    return `${firstName} ${lastName}`;
+  }, [ firstName, lastName ]);
+​
+  return (
+    <div>{name}</div>
+  );
+};
+```
+
+```diff 5:6 title="useMemo Example" subtitle="We need to do something expensive"
+```
+```diff 4:6 title="useMemo Example" subtitle="so we wrap it in useMemo"
+```
+```diff 4:7 title="useMemo Example" subtitle="and specify when it should re-compute"
+```
+
+```diff title="useMemo Example" subtitle="Not a particularly real-world use-case though"
+```
+
+</CodeSurfer>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="useMemo to cache a function call"
+import React, { useMemo } from 'react';
+
+function Hello({ bigJSONBlob }) {
+  const lines = useMemo(() => {
+    const data = JSON.parse(bigJSONBlob);
+    return flatten(data);
+  }, [ bigJSONBlob ]);
+
+  return (
+    <div>{lines.map(line => <div>{line}</div>)}</div>
+  );
+};
+
+function flatten(input) {
+  return Object.keys(input).map(key => {
+    if (typeof input[key] === 'object') {
+      return [
+        `${key}:`,
+        ...flatten(input[key]).map(line => `  - ${line}`),
+      ];
+    }
+
+    return [ `${key}: ${input[key]}` ];
+  }).flat();
+}
+```
+
+```diff 14:25 title="useMemo to cache a function call" subtitle="This could get quite expensive for a large object"
+```
+```diff 5:6 title="useMemo to cache a function call" subtitle="Even the parsing could make a difference"
+```
+```diff 4:7 title="useMemo to cache a function call" subtitle="So we memoize the whole value, only recalculating on bigJSONBlob changes"
+```
+
+```diff title="useMemo to cache a function call"
+```
+
+</CodeSurfer>
+
+---
+
+## useCallback
+
+<Steps>
+
+* one
+* two
+* when?
+* `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`
+
+</Steps>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="useCallback" subtitle="a Thing with a click handler"
+import React, { useCallback } from 'react';
+
+function Hello({ firstName, lastName }) {
+  const handleClick = () => {
+    console.log(`${firstName} ${lastName}`);
+  };
+
+  return (
+    <Thing onClick={handleClick}>Hello</Thing>
+  );
+};
+```
+
+```jsx title="useCallback" subtitle="click handler gets memoized"
+import React, { useCallback } from 'react';
+
+function Hello({ firstName, lastName }) {
+  const handleClick = useCallback(() => {
+    console.log(`${firstName} ${lastName}`);
+  }, [ firstName, lastName ]);
+
+  return (
+    <Thing onClick={handleClick}>Hello</Thing>
+  );
+};
+```
+
+```diff title="useCallback"
+```
+
+</CodeSurfer>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="Pop Quiz"
+import React from 'react';
+
+function Hello1() {
+  const handleClick = () => { /* do stuff */ };
+
+  return (
+    <div onClick={handleClick}>Hello</div>
+  );
+};
+
+function Hello2() {
+  const handleClick = useCallback(() => { /* do stuff */ }, []);
+
+  return (
+    <div onClick={handleClick}>Hello</div>
+  );
+};
+```
+
+```diff 3:9 title="Pop Quiz" subtitle="a click handler"
+```
+```diff 11:17 title="Pop Quiz" subtitle="a memoized click handler"
+```
+```diff 3:17 title="Pop Quiz" subtitle="Which is more performant? Why"
+```
+
+</CodeSurfer>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="Pop Quiz Answer" subtitle="the memoized click handler"
+import React, { useCallback } from 'react';
+
+function Hello2() {
+  const handleClick = useCallback(() => { /* do stuff */ }, []);
+
+  return (
+    <div onClick={handleClick}>Hello</div>
+  );
+};
+```
+
+```jsx title="Pop Quiz Answer" subtitle="the memoized click handler, rewritten"
+import React, { useCallback } from 'react';
+
+function Hello2() {
+  const handleClickFn = () => { /* do stuff */ };
+  const handleClick = useCallback(handleClickFn, []);
+
+  return (
+    <div onClick={handleClick}>Hello</div>
+  );
+};
+```
+
+```jsx title="Pop Quiz Answer" subtitle="which is almost the same as the original"
+import React, { useCallback } from 'react';
+
+function Hello1() {
+  const handleClick = () => { /* do stuff */ };
+
+  return (
+    <div onClick={handleClick}>Hello</div>
+  );
+};
+
+function Hello2() {
+  const handleClickFn = () => { /* do stuff */ };
+  const handleClick = useCallback(handleClickFn, []);
+
+  return (
+    <div onClick={handleClick}>Hello</div>
+  );
+};
+```
+
+```diff title="Pop Quiz Answer" subtitle="Now: which is more performant?"
+```
+
+```jsx title="Pop Quiz Answer" subtitle="if the child component depends on referencial identity"
+import React, { useCallback } from 'react';
+
+function Thing({ onClick }) {
+  useEffect(() => {
+    document.addEventListener('click', onClick)
+
+    return () => document.removeEventListener('click', onClick)
+  }, [ onClick ])
+
+  return <div>Hello</div>;
+});
+```
+
+```jsx title="Pop Quiz Answer" subtitle="Only then does this improve performance"
+import React, { useCallback } from 'react';
+
+function Thing({ onClick }) {
+  useEffect(() => {
+    document.addEventListener('click', onClick)
+
+    return () => document.removeEventListener('click', onClick)
+  }, [ onClick ])
+
+  return <div>Hello</div>;
+});
+
+function Hello3() {
+  const handleClick = useCallback(() => { /* do stuff */ }, []);
+
+  return (
+    <Thing onClick={handleClick}>Hello</Thing>
+  );
+};
+```
+
+</CodeSurfer>
+
+---
+
+# Questions?
