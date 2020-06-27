@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "present": "mdx-deck ./src/app/deck.mdx",
-    "start": "react-scripts -r ./exercises.js start",
-    "build": "react-scripts -r ./exercises.js build",
-    "test": "react-scripts -r ./exercises.js test"
+    "mdx-deck": "mdx-deck",
+    "present": "node ./exercise-selector/mdx-deck",
+    "start": "react-scripts -r ./exercise-selector/react-scripts.js start",
+    "build": "react-scripts -r ./exercise-selector/react-scripts.js build",
+    "test": "react-scripts -r ./exercise-selector/react-scripts.js test"
   },
   "browserslist": {
     "production": [
@@ -22,7 +23,6 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "mdx-deck": "^4.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
@@ -32,6 +32,7 @@
     "@testing-library/user-event": "^7.2.1",
     "code-surfer": "^3.1.1",
     "deepmerge": "^4.2.2",
+    "mdx-deck": "^4.1.1",
     "react-scripts": "3.4.1",
     "readline-sync": "^1.4.10"
   }

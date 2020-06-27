@@ -44,7 +44,7 @@ function Game() {
     return (
         <>
             <ThemeContext.Provider value={theme}>
-                <Board 
+                <Board
                     board={board}
                     onSquareClick={handleSquareClick}
                     hintSquare={hintSquare}

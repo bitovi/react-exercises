@@ -3,7 +3,7 @@ import {ThemeContext} from './Game'
 
 function Square({onClick, symbol, displayAsHint}) {
     const theme = useContext(ThemeContext);
-    console.log(theme)
+
     return (
         <div
             className="square"
