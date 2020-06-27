@@ -5,7 +5,7 @@ import exercise from './exercise.json';
 
 ReactDOM.render(
   <React.StrictMode>
-    Exercise: {exercise.name}
+    {exercise.name && <div>Exercise: {exercise.name}</div>}
     <App />
   </React.StrictMode>,
   document.getElementById('root'),

@@ -4,6 +4,7 @@ const readlineSync = require('readline-sync');
 
 const srcPath = path.join(__dirname, '..', '..', 'src');
 const exercisesPath = path.join(srcPath, 'exercises');
+const chars = '123456789abcdefghijklmnopqrstuvwxyz'
 
 module.exports = function getExercise() {
   const exercises = fs
@@ -25,10 +26,8 @@ module.exports = function getExercise() {
     .filter((config) => typeof config === 'object');
 
   let index = null;
-  if (process.env.EXERCISE) {
-    index = parseInt(process.env.EXERCISE, 10) - 1;
-  } else if (process.argv[2]) {
-    index = parseInt(process.argv[2], 10) - 1;
+  if (process.env.EXERCISE || process.argv[2]) {
+    index = chars.indexOf(process.env.EXERCISE || process.argv[2])
   } else {
     index = readlineSync.keyInSelect(
       exercises.map((exercise) => exercise.name),
@@ -44,7 +43,7 @@ module.exports = function getExercise() {
     process.exit(1);
   }
 
-  process.env.EXERCISE = index + 1;
+  process.env.EXERCISE = chars[index]
 
   return exercises[index];
 };

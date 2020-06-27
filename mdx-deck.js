@@ -1,3 +1,4 @@
+import React from 'react';
 import deepmerge from 'deepmerge';
 
 import { prism, dark } from '@mdx-deck/themes';
@@ -18,3 +19,11 @@ export const theme = deepmerge.all([
 
 const code = theme.components.code;
 theme.components.code = (props) => code({ ...props, style: prismStyle });
+
+export function Half({ children, style, ...props }) {
+  return (
+    <div {...props} style={{ width: '50%', textAlign: 'center', ...style }}>
+      {children}
+    </div>
+  )
+}
