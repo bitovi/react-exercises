@@ -1,7 +1,7 @@
 import React from 'react';
-import Game from "../../../app/components/Game"
-import "../../../app/style.css"
-import Search from './Search'
+import Game from '../../../app/components/Game';
+import '../../../app/style.css';
+import Search from './Search';
 
 function App() {
   return (

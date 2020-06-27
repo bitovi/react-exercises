@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 // import the Square component (see directions below)
 
 function Board() {
-    return (
-        <div className="board">
-            {/* 
+  return (
+    <div className="board">
+      {/* 
                 Render 9 Square components
 
                 You'll first need to create the Square component.
@@ -13,8 +13,8 @@ function Board() {
 
                 <div class="square">X</div>
             */}
-        </div>
-    );
+    </div>
+  );
 }
 
 export default Board;

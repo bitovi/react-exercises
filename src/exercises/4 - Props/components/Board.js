@@ -1,10 +1,10 @@
-import React from 'react'
-import Square from './Square'
+import React from 'react';
+import Square from './Square';
 
-function Board({onSquareClick, board}) {
-    return (
-        <div className="board">
-            {/* 
+function Board({ onSquareClick, board }) {
+  return (
+    <div className="board">
+      {/* 
                 Use the map function to loop over the "board" prop.
                 Each item in the board array should be mapped to 
                 a <Square /> component.
@@ -13,8 +13,8 @@ function Board({onSquareClick, board}) {
                 onClick prop, and since we're using the map function each
                 Square will also need a unique key prop.
             */}
-        </div>
-    );
+    </div>
+  );
 }
 
 export default Board;

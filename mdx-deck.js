@@ -1,8 +1,8 @@
-import deepmerge from 'deepmerge'
+import deepmerge from 'deepmerge';
 
-import { prism, dark } from '@mdx-deck/themes'
-import { nightOwl } from '@code-surfer/themes'
-import prismStyle from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark'
+import { prism, dark } from '@mdx-deck/themes';
+import { nightOwl } from '@code-surfer/themes';
+import prismStyle from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
 
 export const theme = deepmerge.all([
   prism,
@@ -14,7 +14,7 @@ export const theme = deepmerge.all([
       },
     },
   },
-])
+]);
 
-const code = theme.components.code
-theme.components.code = (props) => code({ ...props, style: prismStyle })
+const code = theme.components.code;
+theme.components.code = (props) => code({ ...props, style: prismStyle });

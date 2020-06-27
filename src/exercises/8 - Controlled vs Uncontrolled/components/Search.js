@@ -14,8 +14,8 @@ import React from 'react';
 function Search() {
   return (
     <div class="search-container">
-        <input class="search"/>
-        <div class="clear">X</div>
+      <input class="search" />
+      <div class="clear">X</div>
     </div>
   );
 }

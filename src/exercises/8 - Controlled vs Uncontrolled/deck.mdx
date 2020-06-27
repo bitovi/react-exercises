@@ -1,7 +1,7 @@
-import { theme as customTheme } from '../../mdx-deck.js'
-export const theme = customTheme
+import { theme as customTheme } from '../../mdx-deck.js';
+export const theme = customTheme;
 
-import { CodeSurfer } from 'code-surfer'
+import { CodeSurfer } from 'code-surfer';
 
 # Controlled vs Uncontrolled Components!
 
@@ -11,22 +11,15 @@ import { CodeSurfer } from 'code-surfer'
 
 ```jsx  title="Inputs in React can be either controlled or uncontrolled" subtitle="Uncontrolled inputs are ones that don't explicitly define a value"
 // Uncontrolled
-function SearchBar(){
-  return (
-    <input type="text"/> 
-  )
+function SearchBar() {
+  return <input type="text" />;
 }
 ```
 
 ```jsx  title="When we provide a value, we're controlling the input" subtitle="In this case, the user can't type anything"
 // Controlled (sort of)
-function SearchBar(){
-  return (
-    <input
-      type="text"
-      value="hello" 
-    /> 
-  )
+function SearchBar() {
+  return <input type="text" value="hello" />;
 }
 ```
 
@@ -40,12 +33,12 @@ function SearchBar(){
     <input
       type="text"
       value={inputValue}
-    /> 
+    />
   )
 }
 ```
 
-```jsx  title="The state is updated when the text changes" 
+```jsx  title="The state is updated when the text changes"
 // Controlled (with state)
 import React, {useState}
 
@@ -56,12 +49,12 @@ function SearchBar(){
       type="text"
       value={inputValue}
       onChange={e => setInputValue(e.target.value)}
-    /> 
+    />
   )
 }
 ```
 
-```jsx  title="This applies to all input types" 
+```jsx  title="This applies to all input types"
 // Controlled (with state)
 import React, {useState}
 
@@ -75,18 +68,18 @@ function SearchBar(){
       type="text"
       value={inputValue}
       onChange={e => setInputValue(e.target.value)}
-    /> 
+    />
     <input
       type="color"
       value={colorValue}
       onChange={e => setColorValueValue(e.target.value)}
-    /> 
+    />
     </>
   )
 }
 ```
 
-```jsx 1:21 title="It's common to let a smart 'parent' component control the values" 
+```jsx 1:21 title="It's common to let a smart 'parent' component control the values"
 // Controlled (with state)
 import React, {useState}
 
@@ -96,7 +89,7 @@ function SearchBar({inputValue, onInputValueChange}){
       type="text"
       value={inputValue}
       onChange={e => onInputValueChange(e.target.value)}
-    /> 
+    />
   )
 }
 
@@ -113,5 +106,3 @@ function SmartParentComponent(){
 </CodeSurfer>
 
 ---
-
-

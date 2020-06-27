@@ -1,9 +1,10 @@
-import { theme as customTheme } from '../../mdx-deck.js'
-export const theme = customTheme
+import { theme as customTheme } from '../../mdx-deck.js';
+export const theme = customTheme;
 
-import { CodeSurfer } from 'code-surfer'
+import { CodeSurfer } from 'code-surfer';
 
 # Props!
+
 They're basically arguments
 
 ---
@@ -11,12 +12,10 @@ They're basically arguments
 <CodeSurfer>
 
 ```jsx title="Let's look at a basic ErrorMessage component" subtitle=""
-import React from 'react'
+import React from 'react';
 
-function ErrorMessage(){
-  return (
-    <div class="error">There is an error</div>
-  )
+function ErrorMessage() {
+  return <div class="error">There is an error</div>;
 }
 ```
 
@@ -75,101 +74,77 @@ function App(){
 ```
 
 ```jsx title="Now let's look at a button component" subtitle=""
-function MyButton(){
-  return (
-    <button>click me</button>
-  )
+function MyButton() {
+  return <button>click me</button>;
 }
 ```
 
 ```jsx title="We'll render it in our app" subtitle=""
-function MyButton(){
-  return (
-    <button>click me</button>
-  )
+function MyButton() {
+  return <button>click me</button>;
 }
 
-function App(){
-  return (
-    <MyButton />
-  )
+function App() {
+  return <MyButton />;
 }
 ```
 
 ```jsx title="And pass it a custom 'btnText' prop" subtitle=""
-function MyButton({btnText}){
-  return (
-    <button>{btnText}</button>
-  )
+function MyButton({ btnText }) {
+  return <button>{btnText}</button>;
 }
 
-function App(){
-  return (
-    <MyButton 
-      btnText="Submit"
-    />
-  )
+function App() {
+  return <MyButton btnText="Submit" />;
 }
 ```
 
 ```jsx title="We can also pass functions" subtitle="These are essentially callbacks for when events happen"
-function MyButton({btnText, onBtnClick}){
-  return (
-    <button onClick={onBtnClick}>{btnText}</button>
-  )
+function MyButton({ btnText, onBtnClick }) {
+  return <button onClick={onBtnClick}>{btnText}</button>;
 }
 
-function App(){
+function App() {
   return (
-    <MyButton 
+    <MyButton
       btnText="Submit"
       onBtnClick={() => {
-        console.log("The button was pressed")
+        console.log('The button was pressed');
       }}
     />
-  )
+  );
 }
 ```
 
 ```jsx title="Our app has a list of friends" subtitle=""
-function App(){
-  const friends = ["Jerry", "Kate", "Ron"]
-  return (
-    <div>
-
-    </div>
-  )
+function App() {
+  const friends = ['Jerry', 'Kate', 'Ron'];
+  return <div></div>;
 }
 ```
 
 ```jsx title="You can map array elements to JSX elements using Array.map" subtitle=""
-function App(){
-  const friends = ["Jerry", "Kate", "Ron"]
+function App() {
+  const friends = ['Jerry', 'Kate', 'Ron'];
   return (
     <div>
-      friends.map(friend => (
-        <li>{friend}</li>
-      )
+      friends.map(friend => (<li>{friend}</li>)
     </div>
-  )
+  );
 }
 ```
 
 ```jsx title="When using Array.map you need to pass a unique 'key' prop" subtitle=""
-function App(){
-  const friends = ["Jerry", "Kate", "Ron"]
+function App() {
+  const friends = ['Jerry', 'Kate', 'Ron'];
   return (
     <div>
-      friends.map(friend => (
-        <li key={friend}>{friend}</li>
-      )
+      friends.map(friend => (<li key={friend}>{friend}</li>)
     </div>
-  )
+  );
 }
 ```
 
 </CodeSurfer>
 
 ---
-
-

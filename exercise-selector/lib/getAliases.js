@@ -1,43 +1,45 @@
-const path = require('path')
-const fs = require('fs')
+const path = require('path');
+const fs = require('fs');
 
-const getExercise = require('./getExercise')
+const getExercise = require('./getExercise');
 
 module.exports = function getAliases() {
-  const exercise = getExercise()
+  const exercise = getExercise();
   if (!exercise) {
-    return {}
+    return {};
   }
 
-  const aliases = {}
+  const aliases = {};
   readdir(exercise.dirname).forEach((file) => {
     if (file.startsWith('_solution/')) {
-      return
+      return;
     }
 
-    aliases[file] = path.join(exercise.dirname, file)
-  })
-  return aliases
-}
+    aliases[file] = path.join(exercise.dirname, file);
+  });
+  return aliases;
+};
 
 function readdir(directory, level = 0) {
   const files = fs
     .readdirSync(directory)
-    .filter(file => !file.startsWith('.'))
+    .filter((file) => !file.startsWith('.'));
 
-  const output = []
+  const output = [];
   for (const file of files) {
-    const filename = path.join(directory, file)
-    const stat = fs.statSync(filename)
+    const filename = path.join(directory, file);
+    const stat = fs.statSync(filename);
 
     if (stat.isDirectory()) {
-      output.push(...readdir(filename, level + 1).map(child => path.join(file, child)))
+      output.push(
+        ...readdir(filename, level + 1).map((child) => path.join(file, child)),
+      );
     }
 
     if (stat.isFile()) {
-      output.push(file)
+      output.push(file);
     }
   }
 
-  return output
+  return output;
 }
