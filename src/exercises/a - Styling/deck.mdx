@@ -1,0 +1,359 @@
+import { theme as customTheme, Half } from '../../../mdx-deck.js';
+export const theme = customTheme;
+
+import { Notes } from 'mdx-deck';
+import { CodeSurfer } from 'code-surfer';
+
+# Styling with React
+
+---
+
+## Four Styling Options
+
+<Steps>
+
+* Inline Styles
+* External CSS (or Sass/Less)
+* CSS Modules
+* Styled Components
+
+</Steps>
+
+---
+
+## Inline Styles
+
+What everybody thinks we mean when we say "css-in-js".
+
+---
+
+<CodeSurfer>
+
+```jsx title="Inline Styles"
+function Thing({ isActive }) {
+  return (
+    <div style={{
+      color: isActive ? 'black' : 'white',
+      backgroundImage: `url(${imgUrl})`,
+    }}>
+      Hello World!
+    </div>
+  );
+}
+```
+
+</CodeSurfer>
+
+---
+
+## External CSS (or Sass/Less)
+
+To add a class to a react element, add it with the `className` prop.
+
+<Steps>
+
+**Note**: this should _always_ be a string.
+
+</Steps>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="External CSS" subtitle="just like you would use class='thing'"
+function Thing({ isActive }) {
+  return (
+    <div className="thing">
+      Hello World!
+    </div>
+  );
+}
+```
+
+```jsx title="External CSS" subtitle="concatenate strings for conditional classes"
+function Thing({ isActive }) {
+  let className = 'thing';
+  if (isActive) {
+    className += ' thing-active';
+  }
+
+  return (
+    <div className={className}>
+      Hello World!
+    </div>
+  );
+}
+```
+
+```jsx title="External CSS" subtitle="use classnames"
+import cx from 'classnames';
+
+function Thing({ isActive }) {
+  return (
+    <div className={cx(
+      'thing',
+      isActive && 'thing-active',
+    )}>
+      Hello World!
+    </div>
+  );
+}
+```
+
+```diff title="External CSS"
+```
+
+</CodeSurfer>
+
+---
+
+## CSS Modules
+
+<Half>
+
+A CSS Module is a CSS file in which all class names and<br />animation names are scoped locally by default.
+
+</Half>
+
+<Steps>
+
+_And you can still use Sass/Less_
+
+</Steps>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="CSS Modules" subtitle="just like you would use class='thing'"
+import styles from './thing.module.css';
+
+function Thing({ isActive }) {
+  return (
+    <div className={styles.thing}>
+      Hello World!
+    </div>
+  );
+}
+```
+
+```jsx title="CSS Modules" subtitle="concatenate strings for conditional classes"
+import styles from './thing.module.css';
+
+function Thing({ isActive }) {
+  let className = styles.thing;
+  if (isActive) {
+    className += ' ' + styles.active;
+  }
+
+  return (
+    <div className={className}>
+      Hello World!
+    </div>
+  );
+}
+```
+
+```jsx title="CSS Modules" subtitle="use classnames"
+import cx from 'classnames';
+import styles from './thing.module.css';
+
+function Thing({ isActive }) {
+  return (
+    <div className={cx(
+      styles.thing,
+      isActive && styles.active,
+    )}>
+      Hello World!
+    </div>
+  );
+}
+```
+
+```diff title="CSS Modules"
+```
+
+</CodeSurfer>
+
+---
+
+## Styled Components
+
+<Steps>
+
+"Everything is a component."
+
+</Steps>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="Styled Components"
+import styled from 'styled-components';
+
+export const Button = styled.button`
+  border: 1px solid darkblue;
+  background: ${props => props.color || 'blue'};
+
+  ${props => props.outline && css`
+    border-color: ${props => props.color || 'blue'};
+    background-color: darkblue;
+  `}
+`;
+```
+
+```diff 3:4 title="Styled Components" subtitle="create a button element with just css"
+```
+```diff 5 title="Styled Components" subtitle="dynamic css values based on props"
+```
+```diff 7:10 title="Styled Components" subtitle="conditional css blocks"
+```
+
+```jsx title="Styled Components"
+import styled from 'styled-components';
+
+export const Button = styled.button`
+  border: 1px solid darkblue;
+  background: ${props => props.color || 'blue'};
+
+  ${props => props.outline && css`
+    border-color: ${props => props.color || 'blue'};
+    background-color: darkblue;
+  `}
+`;
+
+function Thing() {
+  return (
+    <div>
+      <Button>Default Button</Button>
+      <Button color="green">Green Button</Button>
+      <Button outline>Outlined Button</Button>
+    </div>
+  );
+}
+```
+
+```diff 16 title="Styled Components" subtitle="just use the component"
+```
+```diff 17 title="Styled Components" subtitle="change the color"
+```
+```diff 18 title="Styled Components" subtitle="add an outline"
+```
+
+```diff title="Styled Components"
+```
+
+</CodeSurfer>
+
+<Notes>
+
+styled-components utilizes tagged template literals to style your components.
+
+It removes the mapping between components and styles. This means that when you're defining your styles, you're actually creating a normal React component, that has your styles attached to it.
+
+</Notes>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx title="More Styled Components"
+import styled from 'styled-components';
+import Button from './components/Button';
+
+const List = styled.ul`
+  list-style: none;
+
+  li {
+    font-weight: bold;
+  }
+
+  ${Button} {
+    box-shadow: 5px 10px #888888;
+  }
+`
+
+function Thing() {
+  return (
+    <List>
+      <li>First item</li>
+      <li><Button>Second item</Button></li>
+      <li>Third item</li>
+    </List>
+  );
+}
+```
+
+```diff 4:5 title="More Styled Components" subtitle="still just css"
+```
+```diff 7:9 title="More Styled Components" subtitle="nesting elements"
+```
+```diff 11:13 title="More Styled Components" subtitle="nesting other styled components"
+```
+
+```diff title="More Styled Components"
+```
+
+</CodeSurfer>
+
+---
+---
+
+<CodeSurfer>
+
+```jsx 3:11 title="More Styled Components" subtitle="the same button, but with props.theme"
+import styled, { ThemeProvider } from 'styled-components';
+
+const Button = styled.button`
+  border: 1px solid ${props => props.theme.foreground};
+  background: ${props => props.theme.background};
+
+  ${props => props.outline && css`
+    border-color: ${props => props.theme.background};
+    background-color: ${props => props.theme.foreground};
+  `}
+`;
+```
+
+```jsx 19:20 title="More Styled Components" subtitle="same button usage as before"
+import styled, { ThemeProvider } from 'styled-components';
+
+const Button = styled.button`
+  border: 1px solid ${props => props.theme.foreground};
+  background: ${props => props.theme.background};
+
+  ${props => props.outline && css`
+    border-color: ${props => props.theme.background};
+    background-color: ${props => props.theme.foreground};
+  `}
+`;
+
+function Thing() {
+  return (
+    <ThemeProvider theme={{
+      background: 'blue',
+      foreground: 'darkblue',
+    }}>
+      <Button>Default Button</Button>
+      <Button outline>Outline Button</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+```diff 15:18,21 title="More Styled Components" subtitle="theme can be provided at any ancestor"
+```
+
+```diff title="More Styled Components"
+```
+
+</CodeSurfer>
+
+---
+
+# Questions?
