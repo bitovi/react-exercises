@@ -13,7 +13,7 @@ function Square({ onClick, symbol }) {
         color: theme.text,
         // use the "displayAsHint" prop to conditionally set the
         // background color. If this square should be displayed as
-        // a hint set the background to #9AE6B4 otherwise keep itt as the
+        // a hint set the background to #9AE6B4 otherwise keep it as the
         // theme's background
         background: theme.background,
       }}

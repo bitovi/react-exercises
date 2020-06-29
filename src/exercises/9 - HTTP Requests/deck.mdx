@@ -93,8 +93,8 @@ async function getApiData() {
 function App() {
   const [data, setData] = useState();
 
-  useEffect(async () => {
-    setData(await getAPIData());
+  useEffect(() => {
+    getAPIData().then(setData)
   }, []);
 
   return <div>{data}</div>;
