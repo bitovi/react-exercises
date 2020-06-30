@@ -19,7 +19,12 @@ function SearchBar() {
 ```jsx  title="When we provide a value, we're controlling the input" subtitle="In this case, the user can't type anything"
 // Controlled (sort of)
 function SearchBar() {
-  return <input type="text" value="hello" />;
+  return (
+    <input
+      type="text"
+      value="hello"
+    />
+  )
 }
 ```
 
@@ -27,7 +32,7 @@ function SearchBar() {
 // Controlled (with state)
 import React, {useState}
 
-function SearchBar(){
+function SearchBar() {
   const [inputValue, setInputValue] = useState("")
   return (
     <input
