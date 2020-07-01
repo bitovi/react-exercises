@@ -13,9 +13,9 @@ Optimization through Memoization
 
 <Steps>
 
-* one
-* two
-* three
+* Returns a memoized value.
+* Recalculated synchronously based on declared dependencies.
+* Used to optimize expensive calls.
 
 </Steps>
 
@@ -102,10 +102,9 @@ function flatten(input) {
 
 <Steps>
 
-* one
-* two
-* when?
+* A special case of useMemo that returns a function instead of a value.
 * `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`
+* Used to maintain referential equality between renders.
 
 </Steps>
 
@@ -276,3 +275,6 @@ function Hello3() {
 ---
 
 # Questions?
+
+## References
+* [When to useMemo and useCallback](https://kentcdodds.com/blog/usememo-and-usecallback)
