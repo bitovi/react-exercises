@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from './Game';
 
-function Square({ onClick, symbol, displayAsHint }) {
+function Square({ onClick, symbol, displayAsHint, id }) {
   const theme = useContext(ThemeContext);
 
   return (
     <div
+      id={id}
       className="square"
       onClick={onClick}
       style={{

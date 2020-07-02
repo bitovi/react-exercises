@@ -1,0 +1,203 @@
+import { theme as customTheme } from '../../../mdx-deck.js';
+export const theme = customTheme;
+
+import { CodeSurfer } from 'code-surfer';
+
+# Functional Testing (E2Es)
+
+<Steps>
+
+* Types of tests which interact with your app the same way a user does
+* Tests the full stack (end to end)
+* Generally the longest running & most expensive tests
+  * Only covers the "best case" flow, no edge cases
+* Run against a "hosted" version of your app
+
+</Steps>
+
+---
+
+# Cypress
+
+<Steps>
+
+* Industry leading functional testing framework
+* Easy to use UI & JavaScript library
+* Assertion based testing
+  * Tests check what the user sees and make assertions on it
+
+</Steps>
+
+
+---
+
+
+# Testing Flow
+
+<Steps>
+
+* Run the application & start cypress
+* Cypress simulates some user actions
+  * Clicking, typing, scrolling, focusing, etc.
+* The actions cypress performs might cause data to be rendered, removed, or for the UI to change
+* Assertions are made about the new "state" of the site
+
+</Steps>
+
+
+---
+
+<CodeSurfer>
+
+  ```bash title="Setup" subtitle="In your terminal"
+    npm i -D cyress
+  ```
+
+  ```json title="Setup" subtitle="package.json"
+    "scripts": {
+      ...
+      "cy:open": "cypress open"
+    }
+  ```
+</CodeSurfer>
+
+
+
+---
+
+<div style={{display: 'flex', padding: '25px'}}>
+  <img style={{width: '700px'}} src="https://drive.google.com/uc?export=download&id=12BFwrzAXkCoylzB-xkJgh_bh32LQqC0H" />
+
+<CodeSurfer>
+
+```js title="Setup the cypress test"
+it("Shows the user an email warning message", () => {
+
+})
+```
+
+```js title="Tell cypress to visit your site"
+it("Shows the user an email warning message", () => {
+  cy.visit("https://app.thesufferfest.com/#!/users/login//")
+})
+```
+
+```js title="Cypress can find elements by a css selectors and click them"
+it("Shows the user an email warning message", () => {
+  cy.visit("https://app.thesufferfest.com/#!/users/login//")
+  cy.get('.email').click()
+})
+```
+
+```js title="It can also type for you"
+it("Shows the user an email warning message", () => {
+  cy.visit("https://app.thesufferfest.com/#!/users/login//")
+  cy.get('.email').click().type("a")
+})
+```
+
+```js title="And validate that things show up the way you want them to"
+it("Shows the user an email warning message", () => {
+  cy.visit("https://app.thesufferfest.com/#!/users/login//")
+  cy.get('.email').click().type("a")
+  cy.contains('Please enter a valid email address.')
+    .should('be.visible')
+})
+```
+
+```js title="You can type special characters too like backspace, tab or enter"
+it("Shows the user an email warning message", () => {
+  cy.visit("https://app.thesufferfest.com/#!/users/login//")
+  cy.get('.email').click().type("a")
+  cy.contains('Please enter a valid email address.')
+    .should('be.visible')
+  cy.get('.email').click().type("{backspace}")
+  cy.contains('Email field cannot be empty.')
+    .should('be.visible')
+})
+```
+
+</CodeSurfer>
+</div>
+
+---
+
+<div style={{display: 'flex', padding: '25px'}}>
+  <img style={{width: '700px'}} src="https://drive.google.com/uc?export=download&id=19Qp76Jr-BCYGJWkCz1azldWeJkc5TqtT" />
+
+<CodeSurfer>
+
+```js title="Tests can run through entire user flows"
+it("Can create an account from the homepage", () => {
+  cy.visit("https://thesufferfest.com/")
+})
+```
+
+```js title="Interact with your site the way a user would"
+it("Can create an account from the homepage", () => {
+  cy.visit("https://thesufferfest.com/")
+  cy.contains('Try For Free').click()
+})
+```
+
+```js title="Use scrolling and navigate to other pages"
+it("Can create an account from the homepage", () => {
+  cy.visit("https://thesufferfest.com/")
+  cy.contains('Try For Free').click()
+  cy.contains('Create Your Account')
+    .scrollIntoView({offset: {top: -200, left: 0}})
+    .click()
+})
+```
+
+```js title="Fill out forms consistantly in seconds"
+it("Can create an account from the homepage", () => {
+  cy.visit("https://thesufferfest.com/")
+  cy.contains('Try For Free').click()
+  cy.contains('Create Your Account')
+    .scrollIntoView({offset: {top: -200, left: 0}})
+    .click()
+  cy.contains('Create an account').click()
+  cy.get('.name').click().type("Automated Test")
+  cy.get('[placeholder="lan.email"] > .email')
+    .click()
+    .type("test@thesufferfest.com")
+  cy.get('#confirm_email > .email')
+    .click()
+    .type("test@thesufferfest.com")
+  cy.get('.password').click().type("wordpass")
+})
+```
+
+</CodeSurfer>
+</div>
+
+
+---
+
+<CodeSurfer>
+
+```js title="There are many ways to select elements"
+cy.get(cssSelector)
+cy.contains("text on the page")
+```
+
+```js title="Events can be performed on elements"
+cy.get(cssSelector).click()
+cy.contains("text on the page").type("hello world{enter}")
+```
+
+```js title="Assertions can be made on visibility"
+cy.contains("There was an error").should("be.visible")
+```
+
+</CodeSurfer>
+
+---
+
+# Wrapping up
+
+Cypress is all about testing your app the way a user uses it.
+
+
+

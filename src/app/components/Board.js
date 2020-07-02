@@ -7,6 +7,7 @@ function Board({ onSquareClick, board, hintSquare }) {
       {board.map((symbol, index) => (
         <Square
           key={index}
+          id={`square-${index}`}
           symbol={symbol}
           onClick={() => onSquareClick(index)}
           displayAsHint={index === hintSquare}
