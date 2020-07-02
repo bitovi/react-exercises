@@ -61,6 +61,8 @@ To add a class to a react element, add it with the `className` prop.
 <CodeSurfer>
 
 ```jsx title="External CSS" subtitle="just like you would use class='thing'"
+import './thing.css';
+
 function Thing({ isActive }) {
   return (
     <div className="thing">
@@ -71,6 +73,8 @@ function Thing({ isActive }) {
 ```
 
 ```jsx title="External CSS" subtitle="concatenate strings for conditional classes"
+import './thing.css';
+
 function Thing({ isActive }) {
   let className = 'thing';
   if (isActive) {
@@ -87,6 +91,7 @@ function Thing({ isActive }) {
 
 ```jsx title="External CSS" subtitle="use classnames"
 import cx from 'classnames';
+import './thing.css'
 
 function Thing({ isActive }) {
   return (
