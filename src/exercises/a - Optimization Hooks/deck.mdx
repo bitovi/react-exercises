@@ -36,7 +36,7 @@ function Hello({ firstName, lastName }) {
   return (
     <div>{name}</div>
   );
-};
+}
 ```
 
 ```diff 5:6 title="useMemo Example" subtitle="We need to do something expensive"
@@ -54,21 +54,21 @@ function Hello({ firstName, lastName }) {
 ---
 ---
 
+Generate primes, but show only some of them.
+
 <CodeSurfer>
 
 ```jsx title="useMemo to cache a function call"
 import React, { useMemo } from 'react';
 
 function Hello({ bigJSONBlob }) {
-  const lines = useMemo(() => {
-    const data = JSON.parse(bigJSONBlob);
-    return flatten(data);
-  }, [ bigJSONBlob ]);
+  const data = JSON.parse(bigJSONBlob);
+  const lines = flatten(data);
 
   return (
     <div>{lines.map(line => <div>{line}</div>)}</div>
   );
-};
+}
 
 function flatten(input) {
   return Object.keys(input).map(key => {
@@ -84,11 +84,37 @@ function flatten(input) {
 }
 ```
 
-```diff 14:25 title="useMemo to cache a function call" subtitle="This could get quite expensive for a large object"
+```diff 12:23 title="useMemo to cache a function call" subtitle="This could get quite expensive for a large object"
 ```
-```diff 5:6 title="useMemo to cache a function call" subtitle="Even the parsing could make a difference"
+```diff 4:5 title="useMemo to cache a function call" subtitle="Even the parsing could make a difference"
 ```
-```diff 4:7 title="useMemo to cache a function call" subtitle="So we memoize the whole value, only recalculating on bigJSONBlob changes"
+
+```jsx title="useMemo to cache a function call" subtitle="So we memoize the whole value, only recalculating on bigJSONBlob changes"
+import React, { useMemo } from 'react';
+
+function Hello({ bigJSONBlob }) {
+  const lines = useMemo(() => {
+    const data = JSON.parse(bigJSONBlob);
+    return flatten(data);
+  }, [ bigJSONBlob ]);
+
+  return (
+    <div>{lines.map(line => <div>{line}</div>)}</div>
+  );
+}
+
+function flatten(input) {
+  return Object.keys(input).map(key => {
+    if (typeof input[key] === 'object') {
+      return [
+        `${key}:`,
+        ...flatten(input[key]).map(line => `  - ${line}`),
+      ];
+    }
+
+    return [ `${key}: ${input[key]}` ];
+  }).flat();
+}
 ```
 
 ```diff title="useMemo to cache a function call"
@@ -124,7 +150,7 @@ function Hello({ firstName, lastName }) {
   return (
     <Thing onClick={handleClick}>Hello</Thing>
   );
-};
+}
 ```
 
 ```jsx title="useCallback" subtitle="click handler gets memoized"
@@ -138,7 +164,7 @@ function Hello({ firstName, lastName }) {
   return (
     <Thing onClick={handleClick}>Hello</Thing>
   );
-};
+}
 ```
 
 ```diff title="useCallback"
@@ -160,7 +186,7 @@ function Hello1() {
   return (
     <div onClick={handleClick}>Hello</div>
   );
-};
+}
 
 function Hello2() {
   const handleClick = useCallback(() => { /* do stuff */ }, []);
@@ -168,7 +194,7 @@ function Hello2() {
   return (
     <div onClick={handleClick}>Hello</div>
   );
-};
+}
 ```
 
 ```diff 3:9 title="Pop Quiz" subtitle="a click handler"
@@ -194,7 +220,7 @@ function Hello2() {
   return (
     <div onClick={handleClick}>Hello</div>
   );
-};
+}
 ```
 
 ```jsx title="Pop Quiz Answer" subtitle="the memoized click handler, rewritten"
@@ -207,7 +233,7 @@ function Hello2() {
   return (
     <div onClick={handleClick}>Hello</div>
   );
-};
+}
 ```
 
 ```jsx title="Pop Quiz Answer" subtitle="which is almost the same as the original"
@@ -219,7 +245,7 @@ function Hello1() {
   return (
     <div onClick={handleClick}>Hello</div>
   );
-};
+}
 
 function Hello2() {
   const handleClickFn = () => { /* do stuff */ };
@@ -228,7 +254,7 @@ function Hello2() {
   return (
     <div onClick={handleClick}>Hello</div>
   );
-};
+}
 ```
 
 ```diff title="Pop Quiz Answer" subtitle="Now: which is more performant?"
@@ -267,7 +293,7 @@ function Hello3() {
   return (
     <Thing onClick={handleClick}>Hello</Thing>
   );
-};
+}
 ```
 
 </CodeSurfer>
