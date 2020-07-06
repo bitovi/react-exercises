@@ -37,7 +37,7 @@ function App(){
 }
 ```
 
-```jsx title="We can use prors to give it a custom message" subtitle="This is a lot like passing an argument into a function"
+```jsx title="We can use props to give it a custom message" subtitle="This is a lot like passing an argument into a function"
 import React from 'react'
 
 function ErrorMessage(props){
@@ -128,7 +128,7 @@ function App() {
   const friends = ['Jerry', 'Kate', 'Ron'];
   return (
     <div>
-      friends.map(friend => (<li>{friend}</li>)
+      {friends.map(friend => (<li>{friend}</li>)}
     </div>
   );
 }
@@ -139,7 +139,7 @@ function App() {
   const friends = ['Jerry', 'Kate', 'Ron'];
   return (
     <div>
-      friends.map(friend => (<li key={friend}>{friend}</li>)
+      {friends.map(friend => (<li key={friend}>{friend}</li>)}
     </div>
   );
 }
