@@ -15,8 +15,8 @@ function Game() {
   return (
     <>
       <Board
-        board={} // What should go here?
-        onSquareClick={}
+        board={null} // What should actually go here?
+        onSquareClick={() => {}}
         // ^ Create a function to pass into onSquareClick
         // that prints out "Clicked"
       />
