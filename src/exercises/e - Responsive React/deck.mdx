@@ -1,0 +1,366 @@
+import { theme as customTheme } from '../../../mdx-deck.js';
+export const theme = customTheme;
+import { CodeSurfer } from 'code-surfer';
+import Facebook from './../../images/facebook.png';
+
+# Responsive React
+
+It's pretty great
+
+---
+
+# Basically 2 approaches
+
+<Steps>
+
+- If you can keep the HTML constant, use media queries or flexbox for responsiveness
+- If you can't, use a prop or material-ui theme to render different HTML
+
+</Steps>
+
+---
+
+<CodeSurfer>
+
+```jsx title="Material UI comes with a grid"
+<Grid container>
+  <Grid item xs={12}></Grid>
+  <Grid item xs={12}></Grid>
+</Grid>
+```
+
+```jsx title="Material UI comes with a grid"
+<Grid container>
+  <Grid item xs={12}></Grid>
+  <Grid item xs={12}></Grid>
+</Grid>
+```
+
+```jsx title="Material UI comes with a grid"
+<Grid container>
+  <Grid item xs={12}></Grid>
+  <Grid item xs={12}></Grid>
+</Grid>
+```
+
+```jsx title="Material UI comes with a grid"
+<Grid container>
+  <Grid item xs={12} md={6}></Grid>
+  <Grid item xs={12} md={6}></Grid>
+</Grid>
+```
+
+```jsx title="Material UI comes with a grid"
+<Grid container>
+  <Grid item xs={12} sm={6} md={4}></Grid>
+  <Grid item xs={12} sm={6} md={4}></Grid>
+  <Grid item xs={12} sm={6} md={4}></Grid>
+</Grid>
+```
+
+</CodeSurfer>
+
+---
+
+# 5 breakpoints
+
+xs, sm, md, lg, xl
+
+---
+
+# The Grid has 12 columns
+
+The factors of twelve are 2, and 3.
+
+---
+
+# Possible widths
+
+Any fraction where the denominator has only factors of 2, and 3.
+
+---
+
+# 1/9th display
+
+<CodeSurfer>
+
+```jsx
+<Grid container>
+  <Grid item xs={4}>
+    <Grid container>
+      <Grid item xs={4}>
+        A
+      </Grid>
+      <Grid item xs={4}></Grid>
+      <Grid item xs={4}></Grid>
+    </Grid>
+  </Grid>
+  <Grid item xs={4}></Grid>
+  <Grid item xs={4}></Grid>
+</Grid>
+```
+
+```jsx 2:10
+<Grid container>
+  <Grid item xs={4}>
+    <Grid container>
+      <Grid item xs={4}>
+        A
+      </Grid>
+      <Grid item xs={4}></Grid>
+      <Grid item xs={4}></Grid>
+    </Grid>
+  </Grid>
+  <Grid item xs={4}></Grid>
+  <Grid item xs={4}></Grid>
+</Grid>
+```
+
+```jsx 4:6
+<Grid container>
+  <Grid item xs={4}>
+    <Grid container>
+      <Grid item xs={4}>
+        A
+      </Grid>
+      <Grid item xs={4}></Grid>
+      <Grid item xs={4}></Grid>
+    </Grid>
+  </Grid>
+  <Grid item xs={4}></Grid>
+  <Grid item xs={4}></Grid>
+</Grid>
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```css title="Media queries"
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+```
+
+</CodeSurfer>
+
+---
+
+# What about variable number of items?
+
+## Flexbox
+
+---
+
+<CodeSurfer>
+
+```jsx
+<div style={{ display: 'flex' }}>
+  <div>A</div>
+  <div>B</div>
+  ...
+  <div>Z</div>
+</div>
+```
+
+```jsx
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <div>A</div>
+  <div>B</div>
+  ...
+  <div>Z</div>
+</div>
+```
+
+```jsx
+<div
+  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+>
+  <div>A</div>
+  <div>B</div>
+  ...
+  <div>Z</div>
+</div>
+```
+
+</CodeSurfer>
+
+---
+
+# Flexbox is powerful
+
+---
+
+# Check out SYSTM Sidenav
+
+---
+
+<CodeSurfer>
+
+```jsx
+function SideNav(props) {
+  if (props.isMobile) {
+    return <div className="side-styling">Navigation</div>;
+  } else {
+    return <div className="bottom-styling">Navigation</div>;
+  }
+}
+```
+
+```jsx
+function LeftNav(props) {
+  return (
+    <div>
+      Navigation
+      <ul>
+        <li>First Link</li>
+        <li>Second Link</li>
+      </ul>
+    </div>
+  );
+}
+
+function BottomNav(props) {
+  return (
+    <div style={{ display: 'flex' }}>
+      <div>First Link</div>
+      <div>Second Link</div>
+    </div>
+  );
+}
+
+function SideNav(props) {
+  if (props.isMobile) {
+    return <LeftNav {...props} />;
+  } else {
+    return <BottomNav {...props} />;
+  }
+}
+```
+
+```jsx
+function SideNav(props) {
+  let theme = useTheme();
+  let isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+
+  if (isSmall) {
+    return <div className="side-styling">Navigation</div>;
+  } else {
+    return <div className="bottom-styling">Navigation</div>;
+  }
+}
+```
+
+</CodeSurfer>
+
+---
+
+# What is a material-ui Theme?
+
+## Let's take a look
+
+---
+
+# Using the Theme
+
+<CodeSurfer>
+
+```jsx
+function SomeComponent(props) {
+  let theme = useTheme();
+
+  return <div style={{ color: theme.palette.primary.main }}>Some text</div>;
+}
+```
+
+```jsx
+function SomeComponent(props) {
+  return (
+    <DesignrTypography variant="heading-xs" component="h1" align="left">
+      {forward}
+    </DesignrTypography>
+  );
+}
+```
+
+```jsx
+{
+  /* index.jsx (root)*/
+}
+ReactDOM.render(
+  <React.StrictMode>
+    <UserStore>
+      <DesignrThemed>
+        <Localization>
+          <App />
+        </Localization>
+      </DesignrThemed>
+    </UserStore>
+  </React.StrictMode>,
+  document.getElementById('root'),
+);
+```
+
+```jsx 7
+{
+  /* index.jsx (root)*/
+}
+ReactDOM.render(
+  <React.StrictMode>
+    <UserStore>
+      <DesignrThemed>
+        <Localization>
+          <App />
+        </Localization>
+      </DesignrThemed>
+    </UserStore>
+  </React.StrictMode>,
+  document.getElementById('root'),
+);
+```
+
+</CodeSurfer>
+
+---
+
+# A pattern I use a lot
+
+<CodeSurfer>
+
+```jsx
+{
+  /* to conditionally render stuff*/
+}
+function SomeComponent() {
+  let theme = useTheme();
+  let isSmaller = useMediaQuery(theme.breakpoints.down('md'));
+
+  if (isSmaller) {
+    return <div>Some stuff</div>;
+  } else {
+    return <div>Some other stuff</div>;
+  }
+}
+```
+
+</CodeSurfer>
+
+---
+
+# Other patterns I use
+
+<CodeSurfer>
+
+```jsx
+function SomeComponent({ isAdmin }) {
+  return <div>Some stuff {isAdmin && <AdminComponent />}</div>;
+}
+```
+
+</CodeSurfer>
+
+---
