@@ -194,7 +194,9 @@ Any fraction where the denominator has only factors of 2, and 3.
 
 ---
 
-# Check out SYSTM Sidenav
+# But sometimes you just need to render different HTML
+
+Check out SYSTM Sidenav
 
 ---
 
@@ -247,9 +249,9 @@ function SideNav(props) {
   let isSmall = useMediaQuery(theme.breakpoints.down('sm'));
 
   if (isSmall) {
-    return <div className="side-styling">Navigation</div>;
+    return <LeftNav {...props} />;
   } else {
-    return <div className="bottom-styling">Navigation</div>;
+    return <BottomNav {...props} />;
   }
 }
 ```
