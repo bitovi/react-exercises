@@ -15,7 +15,7 @@ They're basically arguments
 import React from 'react';
 
 function ErrorMessage() {
-  return <div class="error">There is an error</div>;
+  return <div className="error">There is an error</div>;
 }
 ```
 
@@ -24,7 +24,7 @@ import React from 'react'
 
 function ErrorMessage(){
   return (
-    <div class="error">There is an error</div>
+    <div className="error">There is an error</div>
   )
 }
 
@@ -37,12 +37,12 @@ function App(){
 }
 ```
 
-```jsx title="We can use prors to give it a custom message" subtitle="This is a lot like passing an argument into a function"
+```jsx title="We can use props to give it a custom message" subtitle="This is a lot like passing an argument into a function"
 import React from 'react'
 
 function ErrorMessage(props){
   return (
-    <div class="error">{props.text}</div>
+    <div className="error">{props.text}</div>
   )
 }
 
@@ -60,7 +60,7 @@ import React from 'react'
 
 function ErrorMessage({text}){
   return (
-    <div class="error">{text}</div>
+    <div className="error">{text}</div>
   )
 }
 
@@ -128,7 +128,7 @@ function App() {
   const friends = ['Jerry', 'Kate', 'Ron'];
   return (
     <div>
-      friends.map(friend => (<li>{friend}</li>)
+      {friends.map(friend => (<li>{friend}</li>)}
     </div>
   );
 }
@@ -139,7 +139,7 @@ function App() {
   const friends = ['Jerry', 'Kate', 'Ron'];
   return (
     <div>
-      friends.map(friend => (<li key={friend}>{friend}</li>)
+      {friends.map(friend => (<li key={friend}>{friend}</li>)}
     </div>
   );
 }

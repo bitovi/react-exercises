@@ -4,14 +4,14 @@ function Search() {
   const [value, setValue] = useState('');
 
   return (
-    <div class="search-container">
+    <div className="search-container">
       <input
-        class="search"
+        className="search"
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
       {value && (
-        <div class="clear" onClick={() => setValue('')}>
+        <div className="clear" onClick={() => setValue('')}>
           X
         </div>
       )}
