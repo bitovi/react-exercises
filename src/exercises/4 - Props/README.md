@@ -7,3 +7,5 @@ The goal is two-fold.
    so that the squares render a symbol that is supplied to them
 2. Pass down a function to each square that prints "clicked" everytime
    a square is clicked.
+
+No need to use state yet.
