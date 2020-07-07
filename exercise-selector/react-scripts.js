@@ -10,7 +10,7 @@ const aliases = getAliases();
 Module.prototype._require = Module.prototype.require;
 Module.prototype.require = function require(name) {
   const filename = Module._resolveFilename(name, this);
-  if (filename.endsWith('/react-scripts/config/webpack.config.js')) {
+  if (filename.endsWith(path.join('react-scripts', 'config', 'webpack.config.js'))) {
     const makeWebpackConfig = this._require(filename);
 
     return function makeCustomWebpackConfig(webpackEnv) {
@@ -28,7 +28,7 @@ Module.prototype.require = function require(name) {
 };
 
 // Jest config override
-if (process.argv[1].endsWith('react-scripts/scripts/test.js')) {
+if (process.argv[1].endsWith(path.join('react-scripts', 'scripts', 'test.js'))) {
   const jest = require('jest');
 
   jest._run = jest.run;
