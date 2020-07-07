@@ -1,6 +1,6 @@
 import React from 'react';
 import Game from '../../../app/components/Game';
-import '../../../app/style.css';
+import '../../../app/components/App.css';
 import Search from './Search';
 
 function App() {

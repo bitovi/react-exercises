@@ -45,6 +45,10 @@ function Thing({ isActive }) {
 
 ---
 
+class vs className
+
+---
+
 ## External CSS (or Sass/Less)
 
 To add a class to a react element, add it with the `className` prop.
@@ -122,9 +126,44 @@ A CSS Module is a CSS file in which all class names and<br />animation names are
 
 <Steps>
 
-_And you can still use Sass/Less_
+* Prevents class name collisions, because each file is sandboxed.
+* _And you can still use Sass/Less_
 
 </Steps>
+
+---
+---
+
+<CodeSurfer>
+
+```css title="Asside: Importing CSS Modules" subtitle="Our CSS"
+.thing {
+  border: 1em solid black;
+}
+
+.thing.active {
+  border-color: red;
+}
+```
+
+```css title="Asside: Importing CSS Modules" subtitle="The generated CSS"
+.Thing_thing_1FUOu {
+  border: 1em solid black;
+}
+
+.Thing_thing_1FUOu.Thing_active_wBa2p {
+  border-color: red;
+}
+```
+
+```js title="Asside: Importing CSS Modules" subtitle="The imported object"
+module.exports = {
+  thing: 'Thing_thing_1FUOu',
+  active: 'Thing_active_wBa2p',
+}
+```
+
+</CodeSurfer>
 
 ---
 ---

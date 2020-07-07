@@ -1,0 +1,202 @@
+import { theme as customTheme } from '../../../mdx-deck.js';
+export const theme = customTheme;
+import { CodeSurfer } from 'code-surfer';
+
+# React Router
+
+The friend you always wanted
+
+---
+
+# What is it?
+
+It's a client side routing solution that the community has embraced.
+
+---
+
+# Shift in development
+
+There's been a shift in the way web apps are being written.
+
+---
+
+# Performance
+
+If you are executing code already on your phone,
+it will be faster than fetching it every time.
+
+---
+
+# Packages react-router, and his cousins
+
+React Router has been split into a couple of packages so that the guts
+are in react-router, and differences in environment have been moved to
+react-router-dom, and react-router-native. Basically for us, we will always be using "react-router-dom"
+
+---
+
+<CodeSurfer>
+
+```jsx
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './Home';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Route path="/" component={Home} />
+    </BrowserRouter>
+  );
+}
+```
+
+```jsx
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Route path="/about" component={About} />
+      <Route path="/" component={Home} />
+    </BrowserRouter>
+  );
+}
+```
+
+```jsx
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './Home';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Route exact path="/about" component={About} />
+      <Route exact path="/" component={Home} />
+    </BrowserRouter>
+  );
+}
+```
+
+```jsx
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+      <Switch>
+        <Route path="/about" component={About} />
+        <Route path="/" component={Home} />
+      </Switch>
+    </BrowserRouter>
+  );
+}
+```
+
+```jsx
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+      <Switch>
+        <Route path="/about" component={About} />
+        <Route exact path="/" component={Home} />
+        <Route path="/" component={NoMatch} />
+      </Switch>
+    </BrowserRouter>
+  );
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+      <Switch>
+        <Route path="/about" component={About} />
+        <Route path="/" component={Home} />
+      </Switch>
+    </BrowserRouter>
+  );
+}
+```
+
+```jsx
+import { BrowserRouter, Switch, Route, useParams } from 'react-router-dom';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+      <Switch>
+        <Route path="/about" component={About} />
+        <Route path="/:id" component={Workout} />
+        <Route path="/" component={Home} />
+      </Switch>
+    </BrowserRouter>
+  );
+}
+
+function Workout() {
+  let { id } = useParams();
+  return <div>{id}</div>;
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer >
+
+```jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+function Navigate() {
+  return <Link to="/about">About</Link>;
+}
+```
+
+```jsx
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+
+function Navigate() {
+  let history = useHistory();
+
+  return <Button onClick={() => history.push('/about')}>About</Button>;
+}
+```
+
+</CodeSurfer>
+
+---
+
+# Differences between Web and Desktop
+
+<div>
+  BrowserRouter is meant for request-based environments
+  <div> whereas HashRouter is meant for file-based environments. </div>
+</div>
+
+---
+
+# Questions?

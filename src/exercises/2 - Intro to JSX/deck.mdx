@@ -16,10 +16,9 @@ It's basically HTML in JS
 ```
 
 ```jsx 2 title="Babel compiles it to pure JS" subtitle="Which looks something like this"
-<h1>Hello World</h1>
+<h1>Hello World</h1>;
 React.createElement('h1', null);
 ```
-
 
 ```jsx  title="Views can be complex"
 <div>
@@ -32,7 +31,7 @@ React.createElement('h1', null);
 <div>
   <h1>Hello World</h1>
   <p>This is JSX</p>
-</div>
+</div>;
 React.createElement(
   'div',
   null,
@@ -98,33 +97,37 @@ React.createElement(
 ```
 
 ```jsx title="Some things are different from HTML" subtitle="like inline styling"
-{/* Normal HTML */}
+{
+  /* Normal HTML */
+}
 <div style="color: red; background-color: blue">
   Inline styles are different
-</div>
+</div>;
 ```
 
 ```jsx  title="Some things are different from HTML" subtitle="In JSX style is an object"
-{/* JSX */}
+{
+  /* JSX */
+}
 <div style={{ color: 'red', backgroundColor: 'blue' }}>
   Inline styles are different
-</div>
+</div>;
 ```
 
 ```jsx title="Some things are different from HTML" subtitle="Classes are different too"
-<div className="button primarys">So are classes</div>
+<div className="button primary">So are classes</div>
 ```
 
 ```jsx  title="JavaScript values can be interpolated into the JSX" subtitle=""
   const name = "Bitovi"
-  <div className="button primarys">
+  <div className="button primary">
     Welcome to {name}!
   </div>
 ```
 
 ```jsx  title="Making HTML & JS work seamlessly together" subtitle=""
   const name = "Mike"
-  <div className="button primarys">
+  <div className="button primary">
     <h1>Hi I'm {name}!</h1>
   </div>
 ```
@@ -134,20 +137,20 @@ React.createElement(
     name: "mike",
     profession: "programmer"
   }
-  <div className="button primarys">
+  <div className="button primary">
     <h1>Hi I'm {person.name.toUpperCase()}!</h1>
     <p>I'm a {person.profession} living in Philadelphia</p>
   </div>
 ```
 
 ```jsx 1:3 title="Anything you can do in HTML you can do in JSX" subtitle="Like listening for a button click"
-<div className="button primarys">
+<div className="button primary">
   <button>click me</button>
 </div>
 ```
 
 ```jsx 1:3 title="JSX handles user event with ease" subtitle=""
-<div className="button primarys">
+<div className="button primary">
   <button onClick={() => console.log('Clicked')}>click me</button>
 </div>
 ```
@@ -157,7 +160,7 @@ import React from 'react';
 
 function MyButton() {
   return (
-    <div className="button primarys">
+    <div className="button primary">
       <button onClick={() => console.log('Clicked')}>click me</button>
     </div>
   );
@@ -169,7 +172,7 @@ function MyButton() {
 
   function MyButton(){
     return (
-      <div className="button primarys">
+      <div className="button primary">
           <button>click me</button>
       </div>
     )
@@ -189,7 +192,7 @@ function MyButton() {
 
   function MyButton(props){
     return (
-      <div className="button primarys">
+      <div className="button primary">
           <button>{props.text}</button>
       </div>
     )
@@ -209,7 +212,7 @@ import React from 'react';
 
 function MyButton(props) {
   return (
-    <div className="button primarys">
+    <div className="button primary">
       <button>{props.text}</button>
     </div>
   );
@@ -236,3 +239,5 @@ export default MyButton;
 </CodeSurfer>
 
 ---
+
+# Questions?
