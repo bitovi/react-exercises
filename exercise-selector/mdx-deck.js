@@ -6,8 +6,8 @@ const getExercise = require('./lib/getExercise');
 const exercise = getExercise();
 
 const deck = exercise
-  ? `./src/exercises/${exercise.id}/deck.mdx`
-  : './src/app/deck.mdx';
+  ? path.resolve('.', 'src', 'exercises', exercise.id, 'deck.mdx')
+  : path.resolve('.', 'src', 'app', 'deck.mdx');
 
 spawn('npm', ['run', 'mdx-deck', deck], {
   stdio: 'inherit',

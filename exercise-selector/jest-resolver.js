@@ -1,6 +1,5 @@
 const path = require('path');
 
-const getExercise = require('./lib/getExercise');
 const getAliases = require('./lib/getAliases');
 
 const aliases = getAliases();
