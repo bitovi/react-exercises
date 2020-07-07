@@ -14,7 +14,7 @@ function Board() {
     newBoard[squareIndex] = isXTurn ? 'X' : 'O';
 
     setBoard(newBoard);
-    setIsXTurn((value) => !value);
+    setIsXTurn(!isXTurn);
   }
 
   return (
