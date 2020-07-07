@@ -11,7 +11,7 @@ module.exports = function getAliases() {
 
   const aliases = {};
   readdir(exercise.dirname).forEach((file) => {
-    if (file.startsWith('_') || file === 'deck') {
+    if (file.startsWith('_') || file === 'deck.mdx') {
       return;
     }
 

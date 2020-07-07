@@ -242,7 +242,7 @@ export const Button = styled.button`
   border: 1px solid darkblue;
   background: ${props => props.color || 'blue'};
 
-  ${props => props.outline && css`
+  ${props => props.outline && `
     border-color: ${props => props.color || 'blue'};
     background-color: darkblue;
   `}
@@ -263,7 +263,7 @@ export const Button = styled.button`
   border: 1px solid darkblue;
   background: ${props => props.color || 'blue'};
 
-  ${props => props.outline && css`
+  ${props => props.outline && `
     border-color: ${props => props.color || 'blue'};
     background-color: darkblue;
   `}
@@ -348,7 +348,7 @@ const Button = styled.button`
   border: 1px solid ${props => props.theme.foreground};
   background: ${props => props.theme.background};
 
-  ${props => props.outline && css`
+  ${props => props.outline && `
     border-color: ${props => props.theme.background};
     background-color: ${props => props.theme.foreground};
   `}
@@ -362,7 +362,7 @@ const Button = styled.button`
   border: 1px solid ${props => props.theme.foreground};
   background: ${props => props.theme.background};
 
-  ${props => props.outline && css`
+  ${props => props.outline && `
     border-color: ${props => props.theme.background};
     background-color: ${props => props.theme.foreground};
   `}
