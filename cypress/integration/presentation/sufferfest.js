@@ -1,6 +1,6 @@
 context("Sufferfest Tests", () => {
     beforeEach(() => {
-      cy.viewport(1000, 1000)
+      cy.viewport(1300, 800)
     })
   
     it("can create a user from the homepage", () => {
@@ -24,15 +24,15 @@ context("Sufferfest Tests", () => {
        cy.get(':nth-child(7) > .ng-pristine').click()
        cy.get(':nth-child(8) > .ng-pristine').click()
     })
-    // it("let's the user see their password on login page", () => {
-    //     cy.visit("https://app.thesufferfest.com/#!/users/login//")
-    //     cy.get('.email').click()
-    //     cy.get('body').click()
-    //     cy.get('.email').click().type("a")
-    //     cy.get('body').click()
-    //     cy.contains('Please enter a valid email address.').should('be.visible')
-    //     cy.get('.email').click().type("{backspace}")
-    //     cy.contains('Email field cannot be empty.').should('be.visible')
-    //  })
+    it("let's the user see their password on login page", () => {
+        cy.visit("https://app.thesufferfest.com/#!/users/login//")
+        cy.get('.email').click()
+        cy.get('body').click()
+        cy.get('.email').click().type("a")
+        cy.get('body').click()
+        cy.contains('Please enter a valid email address.').should('be.visible')
+        cy.get('.email').click().type("{backspace}")
+        cy.contains('Email field cannot be empty.').should('be.visible')
+     })
   })
   
