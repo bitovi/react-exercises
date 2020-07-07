@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Board from './Board';
 
 const blankBoard = ['', '', '', '', '', '', '', '', ''];
@@ -15,7 +15,7 @@ function Game() {
   return (
     <>
       <Board
-        board={null} // What should actually go here?
+        board={[]} // What should actually go here?
         onSquareClick={() => {}}
         // ^ Create a function to pass into onSquareClick
         // that prints out "Clicked"
