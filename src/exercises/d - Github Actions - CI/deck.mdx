@@ -1,0 +1,82 @@
+import { theme as customTheme, Half } from '../../../mdx-deck.js';
+export const theme = customTheme;
+
+import { CodeSurfer } from 'code-surfer';
+
+# Github Actions for CI
+
+<Steps>
+
+- Easily automate your software workflows
+- Handle CI, CD, Build Pipelines
+- All triggered by GitHub events
+    - Pushes, tags, releases, etc
+
+</Steps>
+
+---
+
+# Create a GitHub Action to run tests after pushing to a branch
+
+---
+
+<CodeSurfer>
+
+```bash title="Setup for a basic CI build" subtitle="Create a .github/workflows directory"
+mkdir .github/workflows
+```
+
+```bash title="Setup for a basic CI build" subtitle="create a ci-test.yml file in the new directory"
+touch ci-test.yml
+```
+
+```yml title="Setup for a basic CI build" subtitle="Start by defining the name of the job"
+name: Tic-tac-toe CI
+```
+
+```yml title="Setup for a basic CI build" subtitle="Now tell github when it should run the job"
+name: Tic-tac-toe CI
+on:
+  push:
+    branches:
+      - '*'
+      - '!master' # won't run on master
+```
+
+```yml title="Setup for a basic CI build" subtitle="Finally define the steps for building/testing"
+name: Tic-tac-toe CI
+on:
+  push:
+    branches:
+      - '*'
+      - '!master' # won't run on master
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Use Node.js 12.x
+            uses: actions/setup-node@v1
+            with:
+            node-version: 12.x
+        - run: npm install
+        - run: npm test
+        # Any other tests can go here
+```
+
+</CodeSurfer>
+
+---
+# Challenge
+
+<Steps>
+
+- In this project build out a github actions ci file
+    - use the "npm run test:e2e" command as the test command
+- Create a new branch, make changes, and push (This should trigger the tests on github)
+
+</Steps>
+
+---
+
+# Questions?

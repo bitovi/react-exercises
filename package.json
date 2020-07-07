@@ -6,9 +6,12 @@
     "mdx-deck": "mdx-deck",
     "present": "node ./exercise-selector/mdx-deck",
     "start": "react-scripts -r ./exercise-selector/react-scripts.js start",
+    "start:ci": "react-scripts start",
     "build": "react-scripts -r ./exercise-selector/react-scripts.js build",
     "test": "react-scripts -r ./exercise-selector/react-scripts.js test",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --headless --spec cypress/integration/exercise/solution.js",
+    "test:e2e": "start-server-and-test start:ci 3000 cy:run"
   },
   "browserslist": {
     "production": [
