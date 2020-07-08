@@ -27,7 +27,10 @@ async function getApiData() {
 function App() {
   return (
     <div>
-      <button>Get API data</button>
+      <button
+      >
+        Get API data
+      </button>
     </div>
   );
 }
@@ -101,4 +104,40 @@ function App() {
 }
 ```
 
+```diff 11:13 title="Pop Quiz: What's missing?" subtitle="There's something we should be doing here. What is it?"
+```
+
+```jsx title="Pop Quiz: What's missing?" subtitle="We need to cleanup. In this case, cancel the request."
+import React, { useEffect } from 'react';
+
+function getApiData() {
+  const source = axios.CancelToken.source();
+
+  const promise = axios.get('https://apiurl.com/data', {
+    canceltoken: source.token,
+  }).then(res => res.data);
+
+  return {
+    cancel: () => source.cancel(),
+    promise,
+  }
+}
+
+function App() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const { cancel, promise } = getAPIData()
+    promise.then(setData)
+    return () => cancel()
+  }, []);
+
+  return <div>{data}</div>;
+}
+```
+
 </CodeSurfer>
+
+---
+
+# Questions?
