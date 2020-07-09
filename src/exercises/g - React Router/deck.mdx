@@ -106,31 +106,9 @@ export default function App() {
             renders the first one that matches the current URL. */}
       <Switch>
         <Route path="/about" component={About} />
+        <Route path="/workout/:id" component={Workout} />
         <Route exact path="/" component={Home} />
         <Route path="/" component={NoMatch} />
-      </Switch>
-    </BrowserRouter>
-  );
-}
-```
-
-</CodeSurfer>
-
----
-
-<CodeSurfer>
-
-```jsx
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-export default function App() {
-  return (
-    <BrowserRouter>
-      {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-      <Switch>
-        <Route path="/about" component={About} />
-        <Route path="/" component={Home} />
       </Switch>
     </BrowserRouter>
   );
@@ -147,8 +125,9 @@ export default function App() {
             renders the first one that matches the current URL. */}
       <Switch>
         <Route path="/about" component={About} />
-        <Route path="/:id" component={Workout} />
-        <Route path="/" component={Home} />
+        <Route path="/workout/:id" component={Workout} />
+        <Route exact path="/" component={Home} />
+        <Route path="/" component={NoMatch} />
       </Switch>
     </BrowserRouter>
   );
@@ -159,12 +138,6 @@ function Workout() {
   return <div>{id}</div>;
 }
 ```
-
-</CodeSurfer>
-
----
-
-<CodeSurfer >
 
 ```jsx
 import React from 'react';

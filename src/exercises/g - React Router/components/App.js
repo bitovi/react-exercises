@@ -7,7 +7,7 @@ go to "/about", and the Home component when you go to
 The page should also contain two react-router-dom links
 to use to navigate between the pages.
 
-How would you add a 404 page that matches any route that isn't either / or /about?
+How would you add a 404 page that matches any route that isn't either /home or /about?
 */
 
 import React from 'react';
