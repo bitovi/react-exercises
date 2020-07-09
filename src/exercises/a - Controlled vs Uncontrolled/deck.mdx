@@ -19,12 +19,7 @@ function SearchBar() {
 ```jsx  title="When we provide a value, we're controlling the input" subtitle="In this case, the user can't type anything"
 // Controlled (sort of)
 function SearchBar() {
-  return (
-    <input
-      type="text"
-      value="hello"
-    />
-  )
+  return <input type="text" value="hello" />;
 }
 ```
 
@@ -68,17 +63,17 @@ function SearchBar(){
   const [colorValue, setColorValue] = useState("")
 
   return (
-    </>
-    <input
-      type="text"
-      value={inputValue}
-      onChange={e => setInputValue(e.target.value)}
-    />
-    <input
-      type="color"
-      value={colorValue}
-      onChange={e => setColorValueValue(e.target.value)}
-    />
+    <>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={e => setInputValue(e.target.value)}
+      />
+      <input
+        type="color"
+        value={colorValue}
+        onChange={e => setColorValueValue(e.target.value)}
+      />
     </>
   )
 }
@@ -111,3 +106,5 @@ function SmartParentComponent(){
 </CodeSurfer>
 
 ---
+
+# Questions
