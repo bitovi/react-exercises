@@ -10,13 +10,13 @@ import { CodeSurfer } from 'code-surfer';
 - Easily automate your software workflows
 - Handle CI, CD, Build Pipelines
 - All triggered by GitHub events
-    - Pushes, tags, releases, etc
+  - Pushes, tags, releases, etc
 
 </Steps>
 
 ---
 
-# Create a GitHub Action to run tests after pushing to a branch
+# Easily run tests after pushing to a branch
 
 ---
 
@@ -51,28 +51,29 @@ on:
       - '*'
       - '!master' # won't run on master
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v2
-        - name: Use Node.js 12.x
-            uses: actions/setup-node@v1
-            with:
-            node-version: 12.x
-        - run: npm install
-        - run: npm test
-        # Any other tests can go here
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        name: Use Node.js 12.x
+        with:
+          node-version: 12.x
+      - run: npm install
+      - run: npm test
+      # Any other tests can go here
 ```
 
 </CodeSurfer>
 
 ---
+
 # Challenge
 
 <Steps>
 
 - In this project build out a github actions ci file
-    - use the "npm run test:e2e" command as the test command
+  - use the "npm run test:e2e" command as the test command
 - Create a new branch, make changes, and push (This should trigger the tests on github)
 
 </Steps>
