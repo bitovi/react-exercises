@@ -22,6 +22,7 @@ function Game() {
         setBoard(newBoard);
         setIsXTurn(!isXTurn);
       }
+
       setHintSquare(-1);
     }
   }
@@ -37,7 +38,7 @@ function Game() {
     setTheme(theme === themes.light ? themes.dark : themes.light);
   }
 
-  async function getHint() {
+  async function handleHint() {
     setHintSquare(await getHintForBoard(board, getCurrentPlayer()));
   }
 
@@ -50,7 +51,7 @@ function Game() {
           hintSquare={hintSquare}
         />
       </ThemeContext.Provider>
-      <button onClick={getHint}>Get Hint</button>
+      <button onClick={handleHint}>Get Hint</button>
       <button onClick={toggleTheme}>Toggle Theme</button>
       current player: {getCurrentPlayer()}
     </>

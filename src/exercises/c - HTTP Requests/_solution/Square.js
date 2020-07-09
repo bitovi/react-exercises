@@ -10,7 +10,7 @@ function Square({ onClick, symbol, displayAsHint }) {
       onClick={onClick}
       style={{
         color: theme.text,
-        background: displayAsHint ? '#9AE6B4' : theme.background,
+        background: displayAsHint ? theme.hint : theme.background,
       }}
     >
       {symbol}

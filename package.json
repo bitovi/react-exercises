@@ -26,7 +26,11 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "globals": {
+      "context": true,
+      "cy": true
+    }
   },
   "dependencies": {
     "@emotion/styled": "^10.0.27",

@@ -1,7 +1,7 @@
 import React from 'react';
 import Square from './Square';
 
-function Board({ onSquareClick, board, hintSquare }) {
+function Board({ onSquareClick, board }) {
   return (
     <div className="board">
       {board.map((symbol, index) => (
@@ -9,7 +9,6 @@ function Board({ onSquareClick, board, hintSquare }) {
           key={index}
           symbol={symbol}
           onClick={() => onSquareClick(index)}
-          displayAsHint={index === hintSquare}
         />
       ))}
     </div>

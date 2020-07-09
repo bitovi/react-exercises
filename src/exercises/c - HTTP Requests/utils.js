@@ -6,10 +6,12 @@ export const themes = {
   light: {
     text: '#4A5568',
     background: '#EDF2F7',
+    hint: '#9AE6B4',
   },
   dark: {
     text: '#EDF2F7',
     background: '#4A5568',
+    hint: '#9AE6B4',
   },
 };
 

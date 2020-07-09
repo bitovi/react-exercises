@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from './Game';
 
-// Add a boolean prop to Square called "displayAsHint"
 function Square({ onClick, symbol }) {
   const theme = useContext(ThemeContext);
 
@@ -11,10 +10,8 @@ function Square({ onClick, symbol }) {
       onClick={onClick}
       style={{
         color: theme.text,
-        // use the "displayAsHint" prop to conditionally set the
-        // background color. If this square should be displayed as
-        // a hint set the background to #9AE6B4 otherwise keep it as the
-        // theme's background
+        // If this square should be displayed as a hint set the background
+        // to theme.hint otherwise keep it as theme.background
         background: theme.background,
       }}
     >

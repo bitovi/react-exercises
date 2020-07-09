@@ -4,11 +4,18 @@ import { getHintForBoard, boardHasWinner, blankBoard, themes } from '../utils';
 
 export const ThemeContext = React.createContext(themes.light);
 
+/**
+ * Create a state to store the hint value. Create a button that calls the
+ * `getHintForBoard` and updates the state accordingly. Pass that hint index to
+ * the board which will use it to control whether each Square should display as
+ * a hint via a new prop. Use that prop to determine the Square's background
+ * color, based on the theme.
+ */
+
 function Game() {
   const [board, setBoard] = useState(blankBoard);
   const [isXTurn, setIsXTurn] = useState(true);
   const [theme, setTheme] = useState(themes.light);
-  const [hintSquare, setHintSquare] = useState(-1);
 
   function handleSquareClick(squareIndex) {
     if (!board[squareIndex]) {
@@ -22,7 +29,6 @@ function Game() {
         setBoard(newBoard);
         setIsXTurn(!isXTurn);
       }
-      setHintSquare(-1);
     }
   }
 
@@ -43,17 +49,8 @@ function Game() {
         <Board
           board={board}
           onSquareClick={handleSquareClick}
-          hintSquare={null}
-          // ^ Pass in the index of the square (if any) that
-          // should be displayed as a hint. This value will
-          // come from the getHintForBoard function in utils.js
         />
       </ThemeContext.Provider>
-      <button onClick={null}>Get Hint</button>
-      {/* 
-                ^ When this button is clicked, call the getHintForBoard
-                function in utils.js, and update the state accordingly
-            */}
       <button onClick={toggleTheme}>Toggle Theme</button>
       current player: {getCurrentPlayer()}
     </>

@@ -28,9 +28,7 @@ import { CodeSurfer } from 'code-surfer';
 
 </Steps>
 
-
 ---
-
 
 # Testing Flow
 
@@ -44,23 +42,22 @@ import { CodeSurfer } from 'code-surfer';
 
 </Steps>
 
-
 ---
 
 <CodeSurfer>
 
-  ```bash title="Setup" subtitle="In your terminal"
-    npm i -D cyress
-  ```
+```bash title="Setup" subtitle="In your terminal"
+npm i -D cyress
+```
 
-  ```json title="Setup" subtitle="package.json"
-    "scripts": {
-      ...
-      "cy:open": "cypress open"
-    }
-  ```
+```json title="Setup" subtitle="package.json"
+"scripts": {
+  ...
+  "cy:open": "cypress open"
+}
+```
+
 </CodeSurfer>
-
 
 
 ---
@@ -72,7 +69,6 @@ import { CodeSurfer } from 'code-surfer';
 
 ```js title="Setup the cypress test"
 it("Shows the user an email warning message", () => {
-
 })
 ```
 
@@ -172,7 +168,6 @@ it("Can create an account from the homepage", () => {
 </CodeSurfer>
 </div>
 
-
 ---
 
 <CodeSurfer>
@@ -204,6 +199,3 @@ cy.on('window:alert', (str) => {
 # Wrapping up
 
 Cypress is all about testing your app the way a user uses it.
-
-
-
