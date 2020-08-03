@@ -11,7 +11,8 @@
     "test": "react-scripts -r ./exercise-selector/react-scripts.js test",
     "cy:open": "cypress open",
     "cy:run": "cypress run --headless --spec cypress/integration/exercise/solution.js",
-    "test:e2e": "start-server-and-test start:ci 3000 cy:run"
+    "test:e2e": "start-server-and-test start:ci 3000 cy:run",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -48,6 +49,7 @@
     "code-surfer": "^3.1.1",
     "cypress": "^4.9.0",
     "deepmerge": "^4.2.2",
+    "gh-pages": "^3.1.0",
     "mdx-deck": "^4.1.1",
     "react-scripts": "3.4.1",
     "readline-sync": "^1.4.10",

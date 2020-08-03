@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Square from '../../../app/components/Square';
 
 function Board() {
-  const board = []
+  const board = ["", "", "", "", "", "", "", "", ""]
   // store the board in state
   // store the current player in state
 
