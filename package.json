@@ -2,6 +2,7 @@
   "name": "react-exercises",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://bitovi.github.io/react-exercises/",
   "scripts": {
     "mdx-deck": "mdx-deck",
     "present": "node ./exercise-selector/mdx-deck",
@@ -12,7 +13,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run --headless --spec cypress/integration/exercise/solution.js",
     "test:e2e": "start-server-and-test start:ci 3000 cy:run",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build 0 && gh-pages -d build"
   },
   "browserslist": {
     "production": [
